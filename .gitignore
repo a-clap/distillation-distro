@@ -1,5 +1,6 @@
 build/*
-!build/conf/*
+!build/run.sh
+!build/conf
 .idea/
 downloads/
 sstate/
