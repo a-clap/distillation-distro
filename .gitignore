@@ -1,3 +1,5 @@
 build/*
 !build/conf/*
 .idea/
+downloads/
+sstate/
