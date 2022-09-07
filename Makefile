@@ -14,5 +14,5 @@ run:
         -v ${cwd}/downloads:/home/${docker_user}/downloads \
 		-v ${cwd}/src:/home/${docker_user}/src \
 		-v ${cwd}/build:/home/${docker_user}/build \
-        -it --user=${UID} bbb:latest
+        -it --user=$(shell id -u):$(shell id -g) bbb:latest
 
