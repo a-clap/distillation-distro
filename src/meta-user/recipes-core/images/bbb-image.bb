@@ -12,9 +12,5 @@ inherit extrausers
 IMAGE_ROOTFS_SIZE ?= "8192"
 IMAGE_ROOTFS_EXTRA_SPACE:append = "${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", "", d)}"
 
-USER = "bbb"
-EXTRA_USERS_PARAMS = "                           \
-        useradd --create-home -p 'pwd' ${USER};  \
-        "
-
+IMAGE_FEATURES += "ssh-server-dropbear"
 IMAGE_INSTALL += "dropbear go python3"
