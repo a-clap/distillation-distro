@@ -12,4 +12,6 @@ inherit extrausers
 IMAGE_ROOTFS_SIZE ?= "8192"
 IMAGE_ROOTFS_EXTRA_SPACE:append = "${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", "", d)}"
 
-IMAGE_INSTALL += "dropbear go python3 libgpiod libgpiod-tools"
+IMAGE_INSTALL += "kernel-modules"
+IMAGE_INSTALL += "dropbear libgpiod libgpiod-tools"
+IMAGE_INSTALL += "packagegroup-go-sdk-target"
