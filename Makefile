@@ -14,6 +14,7 @@ run:
         -v ${cwd}/downloads:/home/${docker_user}/downloads \
 		-v ${cwd}/src:/home/${docker_user}/src \
 		-v ${cwd}/build:/home/${docker_user}/build \
+		-p 2222:2222	\
         -it --user=$(shell id -u):$(shell id -g) bbb:latest
 
 path = build/tmp/deploy/images/beaglebone
