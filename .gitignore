@@ -1,5 +1,4 @@
 build/*
-!build/run.sh
 !build/conf
 .idea/
 downloads/
