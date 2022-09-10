@@ -1,9 +1,13 @@
 .DEFAULT_GOAL := build
 cwd = $(shell pwd)
 
-.PHONY: build
+.PHONY: build qemu clean modify
 
-build:
+qemu:
+	@bitbake qemu-native
+	@bitbake qemu-helper-native
+
+build: qemu
 	bitbake bbb-image
 
 clean:
@@ -18,3 +22,5 @@ modify:
 	@echo Diff file stored in ${target}_diff.cfg
 	@bitbake virtual/${target} -c cleansstate
 
+run:
+	@runqemu slirp nographic
