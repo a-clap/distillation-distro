@@ -1,10 +1,19 @@
 = BeagleBone Go
-:toc: left
+:toc: preamble
 :toclevels: 3
+
+Yocto image for https://beagleboard.org/black[Beaglebone Black].
 
 == What is this?
 
-TODO
+I want to make some IoT projects on Beaglebone (Black/Pocket) with Go - learn something and additionally make some good stuff.
+
+
+
+
+
+
+
 
 
 
