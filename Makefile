@@ -39,6 +39,5 @@ deploy_rootfs:
 	@echo done!
 
 
-deploy:
-	@sudo dd bs=4M if=${path}/bbb-image-beaglebone.wic of=${dev} status=progress && sync
+deploy: deploy_boot deploy_rootfs
 	@sudo eject ${dev}

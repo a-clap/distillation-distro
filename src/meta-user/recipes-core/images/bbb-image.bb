@@ -11,6 +11,11 @@ inherit core-image
 IMAGE_ROOTFS_SIZE ?= "8192"
 IMAGE_ROOTFS_EXTRA_SPACE:append = "${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", "", d)}"
 
-IMAGE_INSTALL += "kernel-modules"
-IMAGE_INSTALL += "dropbear libgpiod libgpiod-tools"
-IMAGE_INSTALL += "packagegroup-go-sdk-target"
+IMAGE_INSTALL += "libgpiod libgpiod-tools"
+IMAGE_INSTALL += "go rsync"
+IMAGE_INSTALL += "  \
+            packagegroup-core-ssh-dropbear  \
+            openssh-sftp                    \
+            openssh-sftp-server             \
+            ssh-pregen-hostkeys"
+
