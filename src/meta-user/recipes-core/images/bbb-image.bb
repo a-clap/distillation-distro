@@ -19,3 +19,6 @@ IMAGE_INSTALL += "  \
             openssh-sftp-server             \
             ssh-pregen-hostkeys"
 
+# User apps
+IMAGE_INSTALL += "  go-example \
+                    go-heartbeat"

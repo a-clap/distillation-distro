@@ -1,0 +1,12 @@
+[Unit]
+Description=Heartbeat application in go
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=no
+ExecStart=/usr/bin/heartbeat
+
+[Install]
+WantedBy=multi-user.target
