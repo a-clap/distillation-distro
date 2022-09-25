@@ -9,3 +9,4 @@ SRC_URI += "file://gpio-sysfs.cfg \
             file://0001-Configured-USER3_LED-as-heartbeat.patch \
             "
 
+COMPATIBLE_MACHINE:${MACHINE} = "${MACHINE}"
