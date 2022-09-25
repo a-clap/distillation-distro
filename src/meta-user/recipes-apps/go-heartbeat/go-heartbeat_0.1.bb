@@ -7,7 +7,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 SRC_URI = " git://github.com/a-clap/beaglebone;protocol=https;branch=main \
             file://go-heartbeat.service"
 
-SRCREV = "ee869b6e194d4d9a29fdb2a87967d13a8b273bc4"
+SRCREV = "ac5a22bd036acdafa696197ada113cf8792dc265"
 
 GO_IMPORT = "github.com/a-clap/beaglebone"
 GO_INSTALL = "${GO_IMPORT}/pkg/gpio/heartbeat"

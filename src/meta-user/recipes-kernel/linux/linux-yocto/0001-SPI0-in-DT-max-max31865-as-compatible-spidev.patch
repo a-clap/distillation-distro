@@ -1,18 +1,18 @@
 From a24b6c1c31ad08985bf244fae2047cc4ed4d936b Mon Sep 17 00:00:00 2001
 From: OpenEmbedded <oe.patch@oe>
 Date: Sat, 17 Sep 2022 18:44:42 +0200
-Subject: [PATCH] SPI0 in DT; max,max31865 as compatible spidev
+Subject: [PATCH] spi1 in DT; max,max31865 as compatible spidev
 
 ---
- arch/arm/boot/dts/am335x-boneblack.dts | 29 +++++++++++++++++++++++++-
+ arch/arm/boot/dts/am335x-boneblack.dts | 36 ++++++++++++++++++++++++++++++++-
  drivers/spi/spidev.c                   |  2 ++
- 2 files changed, 30 insertions(+), 1 deletion(-)
+ 2 files changed, 36 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/am335x-boneblack.dts b/arch/arm/boot/dts/am335x-boneblack.dts
 index f7ba31fdaa6b..7672a9c5e65c 100644
 --- a/arch/arm/boot/dts/am335x-boneblack.dts
 +++ b/arch/arm/boot/dts/am335x-boneblack.dts
-@@ -184,4 +184,31 @@ &am33xx_pinmux {
+@@ -184,4 +184,37 @@ &am33xx_pinmux {
      ds1820_pins: pinmux_ds1820_pins {
  		pinctrl-single,pins =  <0x78 0x00 0x37>;
      };
@@ -20,29 +20,35 @@ index f7ba31fdaa6b..7672a9c5e65c 100644
 \ No newline at end of file
 +};
 +
-+&spi0 {
++&spi1 {
 +	#address-cells = <1>;
 +    #size-cells = <0>;
 +
 +    status = "okay";
 +	
 +	pinctrl-names = "default"; 
-+	pinctrl-0 = <&spi0_pins_s0>;
++	pinctrl-0 = <&spi1_pins_s0>;
 +
 +	spidev@0 {
 +		compatible = "max,max31865"; 
 +		reg = <0>;
 +        spi-max-frequency = <5000000>;		
 +	};
++	spidev@1 {
++		compatible = "max,max31865";
++		reg = <1>;
++        spi-max-frequency = <5000000>;
++	};
 +};
 +
 +&am33xx_pinmux {
-+    spi0_pins_s0: pinmux_spi0_pins_s0 {
++    spi1_pins_s0: pinmux_spi1_pins_s0 {
 +		pinctrl-single,pins =  <
-+			AM33XX_PADCONF(AM335X_PIN_SPI0_SCLK, PIN_INPUT, MUX_MODE0) /* P9_22 (A17) spi0_sclk.spi0_sclk */
-+			AM33XX_PADCONF(AM335X_PIN_SPI0_D0, PIN_INPUT, MUX_MODE0)   /* P9_21 (B17) spi0_d0.spi0_d0 */
-+			AM33XX_PADCONF(AM335X_PIN_SPI0_D1, PIN_INPUT, MUX_MODE0)   /* P9_18 (B16) spi0_d1.spi0_d1 */
-+			AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, PIN_INPUT, MUX_MODE0)  /* P9_17 (A16) spi0_cs0.spi0_cs0 */
++			AM33XX_PADCONF(AM335X_PIN_MCASP0_ACLKX, PIN_INPUT, MUX_MODE3) /* P9_31 (A13) spi1_sclk.spi1_sclk */
++			AM33XX_PADCONF(AM335X_PIN_MCASP0_AXR0, PIN_INPUT, MUX_MODE3)   /* P9_30 (D12) spi1_d0.spi1_d0 */
++			AM33XX_PADCONF(AM335X_PIN_MCASP0_FSX, PIN_INPUT, MUX_MODE3)   /* P9_29 (B13) spi1_d1.spi1_d1 */
++			AM33XX_PADCONF(AM335X_PIN_MCASP0_AHCLKR, PIN_INPUT, MUX_MODE3)  /* P9_28 (C12) spi1_cs0.spi1_cs0 */
++			AM33XX_PADCONF(AM335X_PIN_ECAP0_IN_PWM0_OUT, PIN_INPUT, MUX_MODE2)  /* P9_42A (C18) spi1_cs0.spi1_cs0 */
 +		>;
 +    };
 +};
