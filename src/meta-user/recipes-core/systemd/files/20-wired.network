@@ -2,6 +2,4 @@
 Name=eth0
 
 [Network]
-Address=192.168.2.100
-Netmask=255.255.255.0
-Gateway=192.168.2.1
+DHCP=yes

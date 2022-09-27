@@ -1,0 +1,5 @@
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+SRC_URI += "file://0001-BBB-GPU-support.patch"
+TARGET_PRODUCT:${MACHINE} = "ti335x"
+COMPATIBLE_MACHINE:${MACHINE} = "${MACHINE}"
+

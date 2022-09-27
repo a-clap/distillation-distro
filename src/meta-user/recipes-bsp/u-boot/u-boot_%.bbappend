@@ -1,6 +1,4 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-SRC_URI += " \
-        file://autoboot-delay.cfg   \
-        "
+SRC_URI:append = " file://autoboot-delay.cfg"
 
