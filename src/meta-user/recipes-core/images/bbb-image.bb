@@ -13,12 +13,11 @@ IMAGE_FEATURES += "package-management hwcodecs"
 IMAGE_ROOTFS_SIZE ?= "8192"
 IMAGE_ROOTFS_EXTRA_SPACE:append = "${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", "", d)}"
 
-IMAGE_INSTALL += "libgpiod libgpiod-tools"
+IMAGE_INSTALL += "libgpiod"
 IMAGE_INSTALL += "go rsync"
 IMAGE_INSTALL += "  \
             packagegroup-core-ssh-dropbear  \
             openssh-sftp                    \
             openssh-sftp-server             \
             ssh-pregen-hostkeys"
-
 
