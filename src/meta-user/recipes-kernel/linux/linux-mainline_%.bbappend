@@ -13,3 +13,7 @@ SRC_URI:append = " git://github.com/torvalds/linux.git;protocol=https;branch=mas
 KERNEL_VERSION_SANITY_SKIP="1"
 SRCREV = "4fe89d07dcc2804c8b562f6c7896a45643d34b2f"
 S = "${WORKDIR}/git"
+
+SRC_URI += "file://onewire.cfg \
+            file://0001-Onewire-on-PI19.patch \
+            "
