@@ -14,6 +14,9 @@ run:
         -v ${cwd}/downloads:/home/${docker_user}/downloads \
 		-v ${cwd}/src:/home/${docker_user}/src \
 		-v ${cwd}/build:/home/${docker_user}/build \
+		-e WLAN0_SSID=${WLAN0_SSID} \
+		-e WLAN0_PSK=${WLAN0_PSK} \
+		-e BB_ENV_PASSTHROUGH_ADDITIONS="WLAN0_SSID WLAN0_PSK" \
 		-p 2222:2222	\
         -it --user=$(shell id -u):$(shell id -g) bbb:latest
 

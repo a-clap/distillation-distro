@@ -21,4 +21,6 @@ IMAGE_INSTALL += "  \
             openssh-sftp-server             \
             ssh-pregen-hostkeys"
 
-IMAGE_INSTALL += "wpa-supplicant linux-firmware-bcm43430"
+IMAGE_INSTALL += "wpa-supplicant linux-firmware-bcm43430 kernel-modules"
+
+KERNEL_MODULE_AUTOLOAD += "bcm43430"
