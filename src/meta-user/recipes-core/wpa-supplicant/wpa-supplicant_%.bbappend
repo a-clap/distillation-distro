@@ -27,3 +27,6 @@ do_install:append() {
 }
 
 SYSTEMD_AUTO_ENABLE:${PN} = "enable"
+
+RDEPENDS:${PN}:bananapi-zero += "linux-firmware-bcm43430 kernel-modules"
+KERNEL_MODULE_AUTOLOAD:bananapi-zero += "bcm43430"

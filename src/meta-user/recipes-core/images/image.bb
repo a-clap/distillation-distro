@@ -16,11 +16,9 @@ IMAGE_ROOTFS_EXTRA_SPACE:append = "${@bb.utils.contains("DISTRO_FEATURES", "syst
 IMAGE_INSTALL += "libgpiod"
 IMAGE_INSTALL += "go rsync"
 IMAGE_INSTALL += "  \
-            packagegroup-core-ssh-dropbear  \
+            packagegroup-core-ssh-openssh   \
             openssh-sftp                    \
             openssh-sftp-server             \
             ssh-pregen-hostkeys"
 
-IMAGE_INSTALL += "wpa-supplicant linux-firmware-bcm43430 kernel-modules"
-
-KERNEL_MODULE_AUTOLOAD += "bcm43430"
+IMAGE_INSTALL += "wpa-supplicant"
