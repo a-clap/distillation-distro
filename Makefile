@@ -38,7 +38,7 @@ deploy_rootfs:
 	@sudo mkdir -p /media/${USER}/rootfs
 	@sudo mount ${dev}2 /media/${USER}/rootfs
 	@sudo rm -rf /media/${USER}/rootfs/*
-	@sudo pv ${path}/bbb-image-bananapi-zero.tar.gz | sudo tar zxf - -C /media/${USER}/rootfs
+	@sudo pv ${path}/image-bananapi-zero.tar.gz | sudo tar zxf - -C /media/${USER}/rootfs
 	@echo done!
 
 

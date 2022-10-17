@@ -1,4 +1,4 @@
-SUMMARY = "A small image just capable of allowing a device to boot."
+SUMMARY = "Image for BananaPI BPI-M2 Zero"
 
 IMAGE_INSTALL = "packagegroup-core-boot ${CORE_IMAGE_EXTRA_INSTALL}"
 

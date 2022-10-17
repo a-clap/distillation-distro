@@ -8,7 +8,7 @@ qemu:
 	@bitbake qemu-helper-native
 
 build:
-	bitbake bbb-image
+	bitbake image
 
 clean:
 	@bitbake world -c mrproper
@@ -23,6 +23,7 @@ modify:
 	cp $(shell cat ${diff_file} | grep "fragment.cfg") ${cwd}/${target}_diff.cfg
 	@echo Configuration diff file stored in: ${cwd}/${target}_diff.cfg
 	@bitbake virtual/${target} -c cleansstate
+	@rm ${diff_file}
 
 run:
 	@runqemu slirp nographic
