@@ -1,4 +1,4 @@
-SUMMARY = "A small image just capable of allowing a device to boot."
+SUMMARY = "Image for BananaPI BPI-M2 Zero"
 
 IMAGE_INSTALL = "packagegroup-core-boot ${CORE_IMAGE_EXTRA_INSTALL}"
 
@@ -16,9 +16,9 @@ IMAGE_ROOTFS_EXTRA_SPACE:append = "${@bb.utils.contains("DISTRO_FEATURES", "syst
 IMAGE_INSTALL += "libgpiod"
 IMAGE_INSTALL += "go rsync"
 IMAGE_INSTALL += "  \
-            packagegroup-core-ssh-dropbear  \
+            packagegroup-core-ssh-openssh   \
             openssh-sftp                    \
             openssh-sftp-server             \
             ssh-pregen-hostkeys"
 
-
+IMAGE_INSTALL += "wpa-supplicant"

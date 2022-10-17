@@ -14,11 +14,14 @@ run:
         -v ${cwd}/downloads:/home/${docker_user}/downloads \
 		-v ${cwd}/src:/home/${docker_user}/src \
 		-v ${cwd}/build:/home/${docker_user}/build \
+		-e WLAN0_SSID=${WLAN0_SSID} \
+		-e WLAN0_PSK=${WLAN0_PSK} \
+		-e BB_ENV_PASSTHROUGH_ADDITIONS="WLAN0_SSID WLAN0_PSK" \
 		-p 2222:2222	\
         -it --user=$(shell id -u):$(shell id -g) bbb:latest
 
-path = build/tmp/deploy/images/beaglebone
-boot_files = am335x-boneblack.dtb  am335x-bone.dtb  MLO  u-boot.img  zImage
+path = build/tmp/deploy/images/bananapi-zero
+boot_files = boot.scr sun8i-h2-plus-bananapi-m2-zero.dtb uImage
 deploy_boot:
 	@echo deploying boot files: ${boot_files}...
 	@sudo umount ${dev}1 || true
@@ -35,7 +38,7 @@ deploy_rootfs:
 	@sudo mkdir -p /media/${USER}/rootfs
 	@sudo mount ${dev}2 /media/${USER}/rootfs
 	@sudo rm -rf /media/${USER}/rootfs/*
-	@sudo pv ${path}/bbb-image-beaglebone-*.tar.bz2 | sudo tar jxf - -C /media/${USER}/rootfs
+	@sudo pv ${path}/image-bananapi-zero.tar.gz | sudo tar zxf - -C /media/${USER}/rootfs
 	@echo done!
 
 
