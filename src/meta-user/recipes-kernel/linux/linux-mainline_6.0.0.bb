@@ -29,5 +29,7 @@ S = "${WORKDIR}/linux-${KERNEL_VERSION}/git"
 SRC_URI += "file://axp20x.cfg \
             file://drm.cfg \
             file://onewire.cfg \
+            file://trng.cfg \
             file://0001-Add-two-spidevs-max31865.patch \
+            file://0001-Add-sun8i-h3-trng-hw-support.patch \
             "

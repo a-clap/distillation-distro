@@ -1,0 +1,25 @@
+From ef528df9b175eb1f15db088978fc8d9ce72eee36 Mon Sep 17 00:00:00 2001
+From: OpenEmbedded <oe.patch@oe>
+Date: Wed, 19 Oct 2022 17:31:53 +0200
+Subject: [PATCH] Add sun8i h3 trng hw support
+
+---
+ drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
+index 9f6594699835..d94b563343aa 100644
+--- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
++++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
+@@ -47,7 +47,7 @@ static const struct ce_variant ce_h3_variant = {
+ 		},
+ 	.esr = ESR_H3,
+ 	.prng = CE_ALG_PRNG,
+-	.trng = CE_ID_NOTSUPP,
++	.trng = CE_ALG_TRNG,
+ };
+ 
+ static const struct ce_variant ce_h5_variant = {
+-- 
+2.25.1
+
