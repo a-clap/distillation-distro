@@ -1,12 +1,29 @@
-= BeagleBone Go
+= IoT Distro
 :toc: preamble
 :toclevels: 3
 
-Yocto image for https://beagleboard.org/black[Beaglebone Black].
+IoT Distro (developed for https://wiki.banana-pi.org/Banana_Pi_BPI-M2_ZERO[BananaPi Zero]) for personal use.
 
 == What is this?
 
-I want to make some IoT projects on Beaglebone (Black/Pocket) with Go - learn something and additionally make some good stuff.
+Linux distro developed with Yocto. Just for personal use.
+Tightly connected with https://github.com/a-clap/iot:[IoT].
+
+=== What interesting I can find here?
+
+* [x] *Linux 6.**. As BananaPi Zero has mainline kernel support it was quite easy
+* [x] *TRNG hw support*. Some people claim that TRNG hw support in sun8i (H3) is not working reliably. Dunno, tested it with rngtest, works for me.
+* [x] *Spidevs*. Way of adding spidev to devicetree.
+* [x] *DeviceTree*. Way of modifying device tree.
+* [x] *Container*. Dockerfile to create container for yocto distro development.
+* [x] *Passing env to yocto*. Look at Makefile and _BB_ENV_PASSTHROUGH_ADDITIONS_ - it is used to inject WLAN configuration to image.
+
+Hopefully, there will be more :)
+
+
+
+
+
 
 
 
