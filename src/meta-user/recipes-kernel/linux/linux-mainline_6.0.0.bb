@@ -5,10 +5,6 @@ require recipes-kernel/linux/linux-mainline.inc
 SRC_URI:remove = "https://www.kernel.org/pub/linux/kernel/v5.x/linux-${PV}.tar.xz"
 # Adding this causes errors, not needed for bananapi
 SRC_URI:remove = "file://0001-dts-orange-pi-zero-Add-wifi-support.patch"
-# Remove conditional appends, as it is problematic during devtools usage, then add it anyway
-SRC_URI:remove:use-mailine-graphics = "file://drm.cfg"
-SRC_URI:remove:bananapi = "file://axp20x.cfg"
-SRC_URI:remove:cubietruck = "file://axp20x.cfg"
 
 DESCRIPTION = "Mainline Linux Kernel 6"
 

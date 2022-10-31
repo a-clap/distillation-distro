@@ -20,6 +20,7 @@ run:
 		-p 2222:2222	\
         -it --user=$(shell id -u):$(shell id -g) bbb:latest
 
+image = image
 path = build/tmp/deploy/images/bananapi-zero
 boot_files = boot.scr sun8i-h2-plus-bananapi-m2-zero.dtb uImage
 deploy_boot:
@@ -38,7 +39,7 @@ deploy_rootfs:
 	@sudo mkdir -p /media/${USER}/rootfs
 	@sudo mount ${dev}2 /media/${USER}/rootfs
 	@sudo rm -rf /media/${USER}/rootfs/*
-	@sudo pv ${path}/image-bananapi-zero.tar.gz | sudo tar zxf - -C /media/${USER}/rootfs
+	@sudo pv ${path}/${image}-bananapi-zero.tar.gz | sudo tar zxf - -C /media/${USER}/rootfs
 	@echo done!
 
 
