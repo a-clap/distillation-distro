@@ -21,4 +21,4 @@ IMAGE_INSTALL += "  \
             openssh-sftp-server             \
             ssh-pregen-hostkeys"
 
-IMAGE_INSTALL += "wpa-supplicant go-gui"
+IMAGE_INSTALL += "wpa-supplicant"

@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 inherit features_check
 
 REQUIRED_DISTRO_FEATURES = "opengl"
-REQUIRES_IMAGE_FEATURES = "x11-base"
+REQUIRES_IMAGE_FEATURES = "x11-base x11-sato"
 
 SRC_URI = "git://github.com/fyne-io/fyne.git;protocol=https;branch=master"
 SRCREV = "${AUTOREV}"
