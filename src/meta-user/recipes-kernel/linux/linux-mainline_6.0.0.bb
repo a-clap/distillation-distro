@@ -32,4 +32,5 @@ SRC_URI += "file://axp20x.cfg \
             file://0001-Onewire-support-on-PC7.patch \
             file://0001-Add-ws2812-support-on-SPI1-MOSI.patch \
             file://0001-Add-i2c0-rtc-ds3231-enable-i2c1.patch \
+            file://0001-Wired-eth-support.patch \
             "

@@ -1,0 +1,33 @@
+From 549b4d826ff4b319400fb4ce38997158e7b7c194 Mon Sep 17 00:00:00 2001
+From: OpenEmbedded <oe.patch@oe>
+Date: Tue, 20 Dec 2022 21:03:01 +0100
+Subject: [PATCH] Wired eth support
+
+---
+ arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+index 3b78f20e2f699..73961fdc3fbb8 100644
+--- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
++++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+@@ -339,4 +339,14 @@ ds3231: rtc@68 {
+ 
+ &i2c1 {
+ 	status = "okay";
+-};
+\ No newline at end of file
++};
++
++&emac {
++	status = "okay";
++	#address-cells = <1>;
++	#size-cells = <0>;
++	phy-mode = "mii";
++	phy-handle = <&int_mii_phy>;
++	allwinner,leds-active-low;
++	local-mac-address = [00 00 00 00 00 00];
++};
+-- 
+2.25.1
+
