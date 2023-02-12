@@ -9,15 +9,16 @@ SRC_URI:remove = "file://0001-dts-orange-pi-zero-Add-wifi-support.patch"
 DESCRIPTION = "Mainline Linux Kernel 6"
 
 KBRANCH = "master"
-KERNEL_VERSION = "${PV}"
-
+KERNEL_VERSION = "6.2rc7"
+KERNEL_VERSION_SANITY_SKIP="1"
 # Contains copy of meta-sunxi linux files
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}/sunxi:"
 # And my own patches
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 # Update kernel git path
 SRC_URI += "git://github.com/torvalds/linux.git;protocol=https;branch=master"
-SRCREV = "4fe89d07dcc2804c8b562f6c7896a45643d34b2f"
+
+SRCREV = "4ec5183ec48656cec489c49f989c508b68b518e3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 S = "${WORKDIR}/linux-${KERNEL_VERSION}/git"
