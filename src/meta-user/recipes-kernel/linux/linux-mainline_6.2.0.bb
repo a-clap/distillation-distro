@@ -28,6 +28,7 @@ SRC_URI += "file://axp20x.cfg \
             file://onewire.cfg \
             file://trng.cfg \
             file://rtc.cfg \
+            file://display.cfg \
             file://0001-Add-two-spidevs-max31865.patch \
             file://0001-Add-sun8i-h3-trng-hw-support.patch \
             file://0001-Onewire-support-on-PC7.patch \
