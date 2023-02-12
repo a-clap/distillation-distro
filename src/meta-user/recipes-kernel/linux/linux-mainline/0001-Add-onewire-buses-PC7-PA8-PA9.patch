@@ -1,32 +1,31 @@
-From 17f510383957fe3eb381687da394e10c6b8d9c09 Mon Sep 17 00:00:00 2001
+From a9a723909b9f29e9158cfba684c41583c40f6ecc Mon Sep 17 00:00:00 2001
 From: OpenEmbedded <oe.patch@oe>
-Date: Fri, 3 Feb 2023 19:23:59 +0100
-Subject: [PATCH] Add onewire buses on PA7, PA8
+Date: Sat, 29 Oct 2022 20:46:46 +0200
+Subject: [PATCH 1/4] Add onewire buses: PC7, PA8, PA9.
 
 ---
- .../dts/sun8i-h2-plus-bananapi-m2-zero.dts    | 38 +++++++++++++++++--
- 1 file changed, 35 insertions(+), 3 deletions(-)
+ .../dts/sun8i-h2-plus-bananapi-m2-zero.dts    | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
 
 diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-index 73961fdc3fbb8..17aa052899811 100644
+index 3963fd58e2f74..569a7933038ce 100644
 --- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
 +++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-@@ -110,16 +110,38 @@ wifi_pwrseq: wifi_pwrseq {
+@@ -109,6 +109,39 @@ wifi_pwrseq: wifi_pwrseq {
+ 		clocks = <&rtc CLK_OSC32K_FANOUT>;
  		clock-names = "ext_clock";
  	};
- 
--	onewire {
++
 +	onewire_1 {
- 		status = "okay";
- 
- 		compatible = "w1-gpio";
- 
- 		pinctrl-names = "default";
--		pinctrl-0 = <&onewire_pin>;
++		status = "okay";
++
++		compatible = "w1-gpio";
++
++		pinctrl-names = "default";
 +		pinctrl-0 = <&onewire_pin_1>;
- 		gpios = <&pio 2 7 GPIO_OPEN_DRAIN>;
- 		linux,open-drain;
- 	};
++		gpios = <&pio 2 7 GPIO_OPEN_DRAIN>;
++		linux,open-drain;
++	};
 +
 +	onewire_2 {
 +		status = "okay";
@@ -52,15 +51,15 @@ index 73961fdc3fbb8..17aa052899811 100644
  };
  
  &cpu0 {
-@@ -309,10 +331,20 @@ spidev@1 {
+@@ -297,3 +330,19 @@ spidev@1 {
+ 	};
  };
  
- &pio {
--	onewire_pin: onewire-pin {
++&pio {
 +	onewire_pin_1: onewire-pin-1 {
- 		pins = "PC7";
- 		function = "gpio_in";
- 	};
++		pins = "PC7";
++		function = "gpio_in";
++	};
 +
 +	onewire_pin_2: onewire-pin-2 {
 +		pins = "PA7";
@@ -71,9 +70,7 @@ index 73961fdc3fbb8..17aa052899811 100644
 +		pins = "PA8";
 +		function = "gpio_in";
 +	};
- };
- 
- &spi1 {
++};
 -- 
 2.25.1
 
