@@ -1,0 +1,14 @@
+[Unit]
+Description=Embedded application
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+WorkingDirectory=/home/root/embedded
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/home/root/embedded/embedded
+
+[Install]
+WantedBy=multi-user.target

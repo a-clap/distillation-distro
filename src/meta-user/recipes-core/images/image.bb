@@ -6,15 +6,14 @@ IMAGE_LINGUAS = " "
 
 LICENSE = "MIT"
 
-inherit core-image
+inherit core-image extrausers
 
 IMAGE_FEATURES += "package-management hwcodecs x11-base"
 
 IMAGE_ROOTFS_SIZE ?= "8192"
 IMAGE_ROOTFS_EXTRA_SPACE:append = "${@bb.utils.contains("DISTRO_FEATURES", "systemd", " + 4096", "", d)}"
 
-IMAGE_INSTALL += "libgpiod"
-IMAGE_INSTALL += "go rsync"
+IMAGE_INSTALL += "libgpiod rsync"
 IMAGE_INSTALL += "  \
             packagegroup-core-ssh-openssh   \
             openssh-sftp                    \
@@ -23,4 +22,7 @@ IMAGE_INSTALL += "  \
 
 IMAGE_INSTALL += "wpa-supplicant"
 
-IMAGE_INSTALL += "go-gui"
+IMAGE_INSTALL += "distillation embedded embedded-gui"
+
+# Create low-privileged user 'kiosk'
+EXTRA_USERS_PARAMS = "useradd -m kiosk;"

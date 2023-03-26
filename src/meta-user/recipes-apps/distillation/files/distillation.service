@@ -1,0 +1,13 @@
+[Unit]
+Description=Distillation application
+After=network.target embedded.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/home/root/distillation/distillation
+
+[Install]
+WantedBy=multi-user.target
