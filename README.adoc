@@ -1,24 +1,89 @@
-= IoT Distro
+= Distillation distro
 :toc: preamble
 :toclevels: 3
+:distro-link: https://github.com/a-clap/distillation-distro
+:imagesdir: docs
 
-IoT Distro (developed for https://wiki.banana-pi.org/Banana_Pi_BPI-M2_ZERO[BananaPi Zero]) for personal use.
+Part of {distro-link}[distillation project].
 
 == What is this?
 
-Linux distro developed with Yocto. Just for personal use.
-Tightly connected with https://github.com/a-clap/iot:[IoT].
+My own Linux distro hand forged with Yocto. It is tightly connected with {distro-link}[software]
 
-=== What interesting I can find here?
+== On what hardware it runs?
 
-* [x] *Linux 6.**. As BananaPi Zero has mainline kernel support it was quite easy
+Whole distro is based on https://wiki.banana-pi.org/Banana_Pi_BPI-M2_ZERO[Banana PI M2 ZERO] and motherboard of my project. The motherboard extends SBC with:
+
+* 4x 24 V DC Digital Outputs on pins:
+** PA6
+** PA16
+** P14
+** P13
+
+* DS3231-RTC
+** I2C0 (PA12/PA11)
+
+* ADS1115 ADC
+** I2C1 (PA19/PA18) - with level translation from 3.3 V to 5 V DC
+
+* 3x 3.3 V DC outputs on pins:
+** PA20
+** PA21
+** PA2
+
+* 1x 3.3 V DC input on pin:
+** PA0
+
+* SPI1 (MOSI-only) - dedicated for WS2812 leds
+** PA15
+
+* SPI0 (PC0/PC1/PC2) with two devices on it:
+** (1) MAX31865
+*** CS0 (PC3)
+*** available as spidev on /dev/spidev0.0
+*** with !DRDY pin on PL4-S
+
+** (2) MAX31865 on CS1 (PC4)
+*** CS1 (PC4)
+*** available as spidev on /dev/spidev0.1
+*** with !DRDY pin on PL2-S
+
+* Ethernet:
+** from TXN/TXP/RXN/RXP pins, which are available here:
+
+.Banana PI EPHY pins
+image::banana-eth.jpg[400,400,role=text-center]
+
+* Three onewire buses on pins:
+** PC7
+** PA7
+** PA8
+
+
+* All 40 IOs (including not used ones) are available through 2x20 goldpin header
+** Unused IO:
+*** PA1
+*** PA3
+*** PA17
+*** PA10
+*** PA9
+
+* XServer/Display:
+** 7 inch touch display connected via HDMI and USB (touch)
+
+== What interesting I can find here?
+
+* [x] *Linux 6.2*. As BananaPi Zero has mainline kernel support so it was quite easy
 * [x] *TRNG hw support*. Some people claim that TRNG hw support in sun8i (H3) is not working reliably. Dunno, tested it with rngtest, works for me.
 * [x] *Spidevs*. Way of adding spidev to devicetree.
+* [x] *Onewire*. Way of adding onewire to devicetree.
 * [x] *DeviceTree*. Way of modifying device tree.
 * [x] *Container*. Dockerfile to create container for yocto distro development.
 * [x] *Passing env to yocto*. Look at Makefile and _BB_ENV_PASSTHROUGH_ADDITIONS_ - it is used to inject WLAN configuration to image.
 
-Hopefully, there will be more :)
+== TODO list
+* [ ] Optimize boot time (right now it boots in around 10 seconds)
+* [ ] OTA support
 
 
 
