@@ -3,8 +3,6 @@
 # This script will be called via mini X session on behalf of the file owner, after
 # being installed in /etc/mini_x/session.d/.
 
-xinput set-prop "Virtual core keyboard" "Device Enabled" "1"
-
 xset s off  > /dev/null 2>&1        # don't activate screensaver
 xset -dpms   > /dev/null 2>&1       # disable DPMS (Energy Star) features.
 xset s noblank   > /dev/null 2>&1   # don't blank the video device
@@ -12,8 +10,8 @@ xset s noblank   > /dev/null 2>&1   # don't blank the video device
 # Set a resolution
 xrandr -s 1024x600
 
+matchbox-terminal&
 # Run the wm first
 matchbox-window-manager -use_titlebar no -use_cursor no &
 
-# Now, run chromium 'as' your user
-su -l -c "/usr/bin/gui" kiosk
+su -l -c "/usr/bin/gui" root
