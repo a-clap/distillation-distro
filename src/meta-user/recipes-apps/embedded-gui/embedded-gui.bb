@@ -16,7 +16,8 @@ SRCREV = "${AUTOREV}"
 GO_IMPORT = "./cmd/gui"
 GO_INSTALL = "${GO_IMPORT}"
 
-DEPENDS += "virtual/libgl libxcursor libxinerama xinput libxkbcommon"
+
+DEPENDS += "virtual/libgl libxcursor libxinerama xinput"
 RDEPENDS:${PN} += "xserver-xorg-extension-glx"
 
 do_install:append() {

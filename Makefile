@@ -45,3 +45,8 @@ deploy_rootfs:
 
 deploy: deploy_boot deploy_rootfs
 	@sudo eject ${dev}
+
+bmap:
+	@sudo umount ${dev}1 || true
+	@sudo umount ${dev}2 || true
+	sudo bmaptool copy $(path)/image-bananapi-zero.wic.gz  --bmap $(path)/image-bananapi-zero.wic.bmap $(dev)

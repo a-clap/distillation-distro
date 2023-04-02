@@ -6,7 +6,7 @@ IMAGE_LINGUAS = " "
 
 LICENSE = "MIT"
 
-inherit core-image extrausers
+inherit core-image
 
 IMAGE_FEATURES += "package-management hwcodecs x11-base"
 
@@ -21,8 +21,5 @@ IMAGE_INSTALL += "  \
             ssh-pregen-hostkeys"
 
 IMAGE_INSTALL += "wpa-supplicant"
-
+IMAGE_INSTALL += "xinput-calibrator pointercal-xinput"
 IMAGE_INSTALL += "distillation embedded embedded-gui"
-
-# Create low-privileged user 'kiosk'
-EXTRA_USERS_PARAMS = "useradd -m kiosk;"
