@@ -10,13 +10,13 @@ SRC_URI += "git://github.com/torvalds/linux.git;protocol=https;branch=master"
 KERNEL_VERSION_SANITY_SKIP="1"
 
 # And my own patches
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/linux-mainline:"
 
 SRCREV = "c9c3395d5e3dcc6daee66c6908354d47bf98cb0c"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 # And from now build from GIT
-S = "${WORKDIR}/linux-${KERNEL_VERSION}/git"
+S = "${WORKDIR}/linux-6.2/git"
 
 SRC_URI += "file://onewire.cfg \
             file://trng.cfg \
