@@ -32,7 +32,7 @@ pt_100:
     id: "pt100_1"
     r_nominal: 100.0
     r_ref: 430.0
-    wiring: "threeWire"
+    wiring: 3
     ready_pin:
       chip: "gpiochip1"
       line: 4
@@ -40,7 +40,7 @@ pt_100:
     id: "pt100_2"
     r_nominal: 100.0
     r_ref: 430.0
-    wiring: "threeWire"
+    wiring: 3
     ready_pin:
       chip: "gpiochip1"
       line: 2
@@ -49,27 +49,6 @@ gpio:
     pin:
       chip: "gpiochip0"
       line: 6
-    active_level: 1
-    direction: 1
-    value: 0
-  - id: "DOUT1"
-    pin:
-      chip: "gpiochip0"
-      line: 16
-    active_level: 1
-    direction: 1
-    value: 0
-  - id: "DOUT2"
-    pin:
-      chip: "gpiochip0"
-      line: 14
-    active_level: 1
-    direction: 1
-    value: 0
-  - id: "DOUT3"
-    pin:
-      chip: "gpiochip0"
-      line: 13
     active_level: 1
     direction: 1
     value: 0
