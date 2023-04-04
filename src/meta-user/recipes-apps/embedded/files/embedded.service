@@ -8,7 +8,7 @@ WorkingDirectory=/home/root/embedded
 Type=simple
 Restart=always
 RestartSec=1
-ExecStart=/home/root/embedded/embedded
+ExecStart=/home/root/embedded/embedded -port 50001
 
 [Install]
 WantedBy=multi-user.target

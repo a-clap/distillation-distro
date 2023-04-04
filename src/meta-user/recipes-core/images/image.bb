@@ -22,4 +22,4 @@ IMAGE_INSTALL += "  \
 
 IMAGE_INSTALL += "wpa-supplicant"
 IMAGE_INSTALL += "xinput-calibrator pointercal-xinput"
-IMAGE_INSTALL += "distillation embedded embedded-gui"
+IMAGE_INSTALL += "distillation embedded gui"

@@ -29,7 +29,7 @@ ds18b20:
     samples: 3
 pt_100:
   - path: "/dev/spidev0.0"
-    id: "pt100_1"
+    name: "pt100_1"
     r_nominal: 100.0
     r_ref: 430.0
     wiring: 3
@@ -37,7 +37,7 @@ pt_100:
       chip: "gpiochip1"
       line: 4
   - path: "/dev/spidev0.1"
-    id: "pt100_2"
+    name: "pt100_2"
     r_nominal: 100.0
     r_ref: 430.0
     wiring: 3

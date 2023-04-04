@@ -4,7 +4,7 @@ LICENSE = "CLOSED"
 
 inherit go go-mod pkgconfig
 
-SRC_URI = "git://github.com/a-clap/distillation;protocol=https;branch=development"
+SRC_URI = "git://github.com/a-clap/embedded;protocol=https;branch=development"
 SRC_URI += "file://config.yaml"
 
 SRCREV = "${AUTOREV}"

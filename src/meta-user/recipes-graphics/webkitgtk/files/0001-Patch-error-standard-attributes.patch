@@ -1,0 +1,25 @@
+From 963d59ac0f686c4246e2723c73a8a11d6f4774f0 Mon Sep 17 00:00:00 2001
+From: a-clap <clapinskiadam@gmail.com>
+Date: Tue, 4 Apr 2023 19:18:14 +0200
+Subject: [PATCH] Patch error: standard attributes in middle of decl-specifiers
+
+---
+ .../platform/graphics/cpu/arm/filters/FELightingNEON.cpp        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Source/WebCore/platform/graphics/cpu/arm/filters/FELightingNEON.cpp b/Source/WebCore/platform/graphics/cpu/arm/filters/FELightingNEON.cpp
+index 42a97ffc..dced3d55 100644
+--- a/Source/WebCore/platform/graphics/cpu/arm/filters/FELightingNEON.cpp
++++ b/Source/WebCore/platform/graphics/cpu/arm/filters/FELightingNEON.cpp
+@@ -35,7 +35,7 @@ namespace WebCore {
+ //   ALPHAX_Q ALPHAY_Q REMAPX_D REMAPY_D
+ 
+ 
+-static alignas(16) short s_FELightingConstantsForNeon[] = {
++alignas(16) static short s_FELightingConstantsForNeon[] = {
+     // Alpha coefficients.
+     -2, 1, 0, -1, 2, 1, 0, -1,
+     0, -1, -2, -1, 0, 1, 2, 1,
+-- 
+2.40.0
+

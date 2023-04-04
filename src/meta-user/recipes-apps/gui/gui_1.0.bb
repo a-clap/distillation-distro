@@ -2,25 +2,33 @@ DESCRIPTION = "Embedded GUI"
 
 LICENSE = "CLOSED"
 
-inherit features_check go go-mod pkgconfig
+inherit features_check pkgconfig
 
 REQUIRED_DISTRO_FEATURES = "opengl"
 REQUIRES_IMAGE_FEATURES = "x11-base"
 
-SRC_URI = "git://github.com/a-clap/distillation;protocol=https;branch=development"
+SRC_URI = "git://github.com/a-clap/distillation-gui;protocol=https;branch=development"
 SRC_URI += "file://session"
 SRC_URI += "file://99-calibration.conf"
 
 SRCREV = "${AUTOREV}"
 
-GO_IMPORT = "./cmd/gui"
-GO_INSTALL = "${GO_IMPORT}"
-
-
-DEPENDS += "virtual/libgl libxcursor libxinerama xinput"
+DEPENDS += "wails-native nodejs-native gtk+3 webkitgtk"
 RDEPENDS:${PN} += "xserver-xorg-extension-glx"
 
-do_install:append() {
+S = "${WORKDIR}/git"
+
+INSANE_SKIP:${PN}:append = "already-stripped ldflags"
+
+do_compile() {
+    cd ${S}
+    GOARCH=arm wails build -skipbindings -nocolour
+}
+
+do_install() {
+  install -d ${D}${bindir}
+  install -m 755 ${S}/build/bin/gui ${D}${bindir}/gui
+
   install -d ${D}${sysconfdir}/mini_x
   install -m 755 ${WORKDIR}/session ${D}${sysconfdir}/mini_x/session
 
