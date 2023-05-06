@@ -1,0 +1,9 @@
+[Unit]
+Description=Enable performance governor on GPU
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c '/usr/sbin/gui-governor.sh'
+
+[Install]
+WantedBy=multi-user.target
