@@ -23,6 +23,7 @@ SRC_URI += "file://onewire.cfg \
             file://rtc.cfg \
             file://display.cfg \
             file://gov.cfg \
+            file://thermal.cfg \
             file://0001-Add-two-spidevs-max31865.patch \
             file://0001-Add-sun8i-h3-trng-hw-support.patch \
             file://0001-Add-onewire-buses-PC7-PA8-PA9.patch \
