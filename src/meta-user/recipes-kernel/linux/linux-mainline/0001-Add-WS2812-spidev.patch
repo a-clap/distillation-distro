@@ -1,0 +1,35 @@
+From 9ff03945b9f4c9e3fb367f5644ae99449cc77d29 Mon Sep 17 00:00:00 2001
+From: OpenEmbedded <oe.patch@oe>
+Date: Sun, 7 May 2023 07:11:34 +0200
+Subject: [PATCH] Add WS2812 spidev
+
+---
+ .../arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+index 69a5d83f19f3..fbd98a925a08 100644
+--- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
++++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+@@ -366,4 +366,17 @@ spidev@1 {
+ 		reg = <1>;
+         spi-max-frequency = <10000000>;
+ 	};
++};
++
++&spi1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi1_pins>;
++
++	spidev@0{
++		compatible = "ws,ws2812"; 
++		reg = <0>;
++        spi-max-frequency = <7000000>;	
++	};
++
+ };
+\ No newline at end of file
+-- 
+2.25.1
+

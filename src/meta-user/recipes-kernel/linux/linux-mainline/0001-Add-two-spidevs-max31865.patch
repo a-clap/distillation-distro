@@ -1,18 +1,17 @@
-From a0c7f084377aa73de6f665695efc7b47935b1d38 Mon Sep 17 00:00:00 2001
+From a21030b7bbda26dcb337b599a5de0029834d5714 Mon Sep 17 00:00:00 2001
 From: OpenEmbedded <oe.patch@oe>
-Date: Tue, 18 Oct 2022 20:36:49 +0200
-Subject: [PATCH] Add two spidevs - max31865
+Date: Sun, 7 May 2023 07:10:39 +0200
+Subject: [PATCH] Add two spidevs max31865
 
 ---
- .../dts/sun8i-h2-plus-bananapi-m2-zero.dts    | 26 +++++++++++++++++++
- drivers/spi/spidev.c                          |  2 ++
- 2 files changed, 28 insertions(+)
+ .../dts/sun8i-h2-plus-bananapi-m2-zero.dts    | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
 diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-index d729b7c705db..3963fd58e2f7 100644
+index 938979e29da9..69a5d83f19f3 100644
 --- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
 +++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-@@ -271,3 +271,29 @@ &usbphy {
+@@ -342,3 +342,28 @@ &usbphy {
  	 */
  	status = "okay";
  };
@@ -41,27 +40,7 @@ index d729b7c705db..3963fd58e2f7 100644
 +        spi-max-frequency = <10000000>;
 +	};
 +};
-+
-diff --git a/drivers/spi/spidev.c b/drivers/spi/spidev.c
-index b2775d82d2d7..9ba1e529faa8 100644
---- a/drivers/spi/spidev.c
-+++ b/drivers/spi/spidev.c
-@@ -691,6 +691,7 @@ static const struct spi_device_id spidev_spi_ids[] = {
- 	{ .name = "m53cpld" },
- 	{ .name = "spi-petra" },
- 	{ .name = "spi-authenta" },
-+	{ .name = "max31865" },
- 	{},
- };
- MODULE_DEVICE_TABLE(spi, spidev_spi_ids);
-@@ -717,6 +718,7 @@ static const struct of_device_id spidev_dt_ids[] = {
- 	{ .compatible = "menlo,m53cpld", .data = &spidev_of_check },
- 	{ .compatible = "cisco,spi-petra", .data = &spidev_of_check },
- 	{ .compatible = "micron,spi-authenta", .data = &spidev_of_check },
-+	{ .compatible = "max,max31865", .data = &spidev_of_check },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, spidev_dt_ids);
+\ No newline at end of file
 -- 
-2.34.1
+2.25.1
 
