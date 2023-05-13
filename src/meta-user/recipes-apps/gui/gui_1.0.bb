@@ -2,7 +2,7 @@ DESCRIPTION = "Embedded GUI"
 
 LICENSE = "CLOSED"
 
-inherit features_check pkgconfig
+inherit features_check pkgconfig goarch
 
 REQUIRED_DISTRO_FEATURES = "opengl"
 REQUIRES_IMAGE_FEATURES = "x11-base"
@@ -20,9 +20,14 @@ S = "${WORKDIR}/git"
 
 INSANE_SKIP:${PN}:append = "already-stripped ldflags"
 
+export GOARCH = "${TARGET_GOARCH}"
+export GOOS = "${TARGET_GOOS}"
+export GOHOSTARCH="${BUILD_GOARCH}"
+export GOHOSTOS="${BUILD_GOOS}"
+
 do_compile() {
     cd ${S}
-    GOARCH=arm wails build -skipbindings -nocolour
+    wails build -skipbindings -nocolour
 }
 
 do_install() {
@@ -37,4 +42,4 @@ do_install() {
 }
 
 FILES:${PN} += "${sysconfdir}/mini_x/session"
-FILES:${PN} += " ${sysconfdir}/X11/xorg.conf.d/*"
+FILES:${PN} += "${sysconfdir}/X11/xorg.conf.d/*"
