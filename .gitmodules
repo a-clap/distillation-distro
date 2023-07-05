@@ -7,3 +7,6 @@
 [submodule "src/meta-sunxi"]
 	path = src/meta-sunxi
 	url = https://github.com/linux-sunxi/meta-sunxi.git
+[submodule "src/meta-mender"]
+	path = src/meta-mender
+	url = https://github.com/mendersoftware/meta-mender.git
