@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Custom script for BananaPI M2 Zero
+# It gets device ID based on wlan0 MAC
+
+set -ue
+
+ifdev=/sys/class/net/wlan0
+
+if [ ! -f "$ifdev/address" ]; then
+    echo "wlan0 not found" >&2
+    exit 1
+else
+    echo "using interface $ifdev" >&2
+    # grab MAC address
+    echo "mac=$(cat $ifdev/address)"
+fi
