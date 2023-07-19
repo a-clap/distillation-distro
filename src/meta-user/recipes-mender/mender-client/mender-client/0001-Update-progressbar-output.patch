@@ -1,0 +1,69 @@
+From 95b6e3236b55db30746660f8e39957d961784a7a Mon Sep 17 00:00:00 2001
+From: a-clap <85076699+a-clap@users.noreply.github.com>
+Date: Wed, 19 Jul 2023 18:10:39 +0200
+Subject: [PATCH] Update progressbar output.
+
+Need to fetch current update state.
+---
+ .../mendersoftware/progressbar/progress.go    | 41 ++++++++++++++++++-
+ 1 file changed, 40 insertions(+), 1 deletion(-)
+
+diff --git a/vendor/github.com/mendersoftware/progressbar/progress.go b/vendor/github.com/mendersoftware/progressbar/progress.go
+index 96507019..ed9319b8 100644
+--- a/vendor/github.com/mendersoftware/progressbar/progress.go
++++ b/vendor/github.com/mendersoftware/progressbar/progress.go
+@@ -48,7 +48,7 @@ func New(size int64) *Bar {
+ 		}
+ 	} else {
+ 		return &Bar{
+-			Renderer: &NoTTYRenderer{
++			Renderer: &IwNoTTYRenderer{
+ 				Out:            os.Stderr,
+ 				ProgressMarker: ".",
+ 				terminalWidth:  70,
+@@ -148,3 +148,42 @@ func (p *NoTTYRenderer) Render(percentage int) {
+ 		fmt.Fprintf(p.Out, str)
+ 	}
+ }
++
++
++type IwNoTTYRenderer struct {
++	Out            io.Writer // Output device
++	ProgressMarker string
++	lastPercentage int
++	terminalWidth  int
++}
++
++func (p *IwNoTTYRenderer) Render(percentage int) {
++	if percentage <= p.lastPercentage {
++		return
++	}
++	suffix := fmt.Sprintf(" %3d%%", percentage)
++	widthAvailable := p.terminalWidth - len(suffix)
++	number_of_dots := int((float64(widthAvailable) * float64(percentage)) / 100)
++	number_of_fillers := widthAvailable - number_of_dots
++	if percentage > 100 {
++		number_of_dots = widthAvailable
++		number_of_fillers = 0
++	}
++	if percentage < 0 {
++		return
++	}
++	if number_of_dots < 0 {
++		return
++	}
++	if number_of_fillers < 0 {
++		return
++	}
++	p.lastPercentage = percentage
++	fmt.Fprintf(p.Out, "%s%s%s\n",
++		strings.Repeat(p.ProgressMarker, number_of_dots),
++		strings.Repeat(" ", number_of_fillers),
++		suffix)
++	if percentage == 100 {
++		fmt.Fprintln(p.Out)
++	}
++}
+-- 
+2.25.1
+

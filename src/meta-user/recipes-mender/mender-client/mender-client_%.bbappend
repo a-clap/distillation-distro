@@ -1,6 +1,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-SRC_URI += " file://mender-device-identity"
+SRC_URI += " file://mender-device-identity \
+             file://0001-Update-progressbar-output.patch;patchdir=src/${GO_IMPORT}"
 
 PACKAGECONFIG:remove:pn-mender-client = " inventory-network-scripts"
 
