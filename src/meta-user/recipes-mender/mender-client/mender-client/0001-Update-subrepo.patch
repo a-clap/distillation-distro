@@ -1,0 +1,19 @@
+From a0ed4ba4f66404e144f2f8e604e2e39e8c88390d Mon Sep 17 00:00:00 2001
+From: a-clap <85076699+a-clap@users.noreply.github.com>
+Date: Wed, 19 Jul 2023 18:13:07 +0200
+Subject: [PATCH] Update subrepo
+
+---
+ src/github.com/mendersoftware/mender | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/github.com/mendersoftware/mender b/src/github.com/mendersoftware/mender
+index 405cac1..95b6e32 160000
+--- a/src/github.com/mendersoftware/mender
++++ b/src/github.com/mendersoftware/mender
+@@ -1 +1 @@
+-Subproject commit 405cac1ff1b9d9f6cfe99218c0b58f6958ecc971
++Subproject commit 95b6e3236b55db30746660f8e39957d961784a7a
+-- 
+2.25.1
+
