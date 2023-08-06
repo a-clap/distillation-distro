@@ -6,16 +6,21 @@ inherit go go-mod pkgconfig
 
 require recipes-apps/distillation-project/distillation-project.inc
 
-GO_IMPORT = "./distillation/cmd/distillation"
-GO_INSTALL = "${GO_IMPORT}"
+GO_INSTALL = "./distillation/cmd/distillation"
+# DEPENDS += "protobuf-native protobuf-go-native go-grpc-native gomock-native gomock"
 
-do_install:append() {
-  install -d ${D}/home/root/distillation
+do_compile:prepend() {
+  # Generate embedded protos
+  cd ${MAIN}/embedded
+  ${GO} generate ./...
+  
+  # And distillation
+  cd ${MAIN}/distillation/pkg/distillation
+  ${GO} generate ./...
 
-  install -m 755 ${D}${bindir}/distillation ${D}/home/root/distillation/distillation
+  # Comeback to main dir
+  cd ${MAIN}
 }
-
-FILES:${PN} += "/home/root/distillation/distillation"
 
 # Enable autostart
 inherit systemd

@@ -12,26 +12,37 @@ REQUIRES_IMAGE_FEATURES = "x11-base"
 SRC_URI += "file://session"
 SRC_URI += "file://99-calibration.conf"
 
-DEPENDS += "wails-native nodejs-native gtk+3 webkitgtk"
+# GUI dependencies
+DEPENDS += "go-native wails-native nodejs-native gtk+3 webkitgtk"
+
 RDEPENDS:${PN} += "xserver-xorg-extension-glx"
-
-S = "${WORKDIR}/git/gui"
-
-INSANE_SKIP:${PN}:append = "already-stripped ldflags"
 
 export GOARCH = "${TARGET_GOARCH}"
 export GOOS = "${TARGET_GOOS}"
 export GOHOSTARCH = "${BUILD_GOARCH}"
 export GOHOSTOS = "${BUILD_GOOS}"
 
+S = "${WORKDIR}/git"
+MAIN = "${S}"
+GO = "go"
+
+INSANE_SKIP:${PN} += "ldflags"
+
 do_compile() {
-    cd ${S}
-    wails build -skipbindings -nocolour
+    # Generate embedded protos
+    cd ${MAIN}/embedded
+    ${GO} generate ./...
+    
+    cd ${MAIN}/distillation/pkg/distillation
+    ${GO} generate ./...
+
+    cd ${MAIN}/gui
+    wails build -ldflags "${GO_EXTRA_LDFLAGS}" -trimpath -skipbindings -nocolour
 }
 
 do_install() {
   install -d ${D}${bindir}
-  install -m 755 ${S}/build/bin/gui ${D}${bindir}/gui
+  install -m 755 ${S}/gui/build/bin/gui ${D}${bindir}/gui
 
   install -d ${D}${sysconfdir}/mini_x
   install -m 755 ${WORKDIR}/session ${D}${sysconfdir}/mini_x/session

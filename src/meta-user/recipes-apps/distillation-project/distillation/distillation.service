@@ -7,7 +7,7 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-ExecStart=/home/root/distillation/distillation -port 50002 -embedded_port 50001
+ExecStart=/usr/bin/distillation -port 50002 -embedded_port 50001
 
 [Install]
 WantedBy=multi-user.target

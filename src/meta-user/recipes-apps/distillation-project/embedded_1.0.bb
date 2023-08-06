@@ -8,30 +8,38 @@ require recipes-apps/distillation-project/distillation-project.inc
 
 SRC_URI += "file://config.yaml"
 
-GO_IMPORT = "./embedded/cmd/embedded"
-GO_INSTALL = "${GO_IMPORT}"
+GO_INSTALL = "./embedded/cmd/embedded"
 
-do_install:append() {
-  install -d ${D}/home/root/embedded
-  install -m 755 ${WORKDIR}/config.yaml ${D}/home/root/embedded/config.yaml
+MENDER_PERSISTENT_STORAGE = "/data"
 
-  install -m 755 ${D}${bindir}/embedded ${D}/home/root/embedded/embedded
+do_compile:prepend(){
+  # Jump to location to generate proto
+  cd ${MAIN}/embedded
+  ${GO} generate ./...
+  cd ${MAIN}
 }
 
-FILES:${PN} += "/home/root/embedded/config.yaml"
-FILES:${PN} += "/home/root/embedded/embedded"
+do_install:append() {
+  install -d ${D}${MENDER_PERSISTENT_STORAGE}/embedded
+  install -m 755 ${WORKDIR}/config.yaml ${D}${MENDER_PERSISTENT_STORAGE}/embedded/config.yaml
+}
+
+FILES:${PN} += "${MENDER_PERSISTENT_STORAGE}/embedded/config.yaml"
 
 # Enable autostart
 inherit systemd
 
-SRC_URI += "file://embedded.service"
+SRC_URI += "file://embedded.service.in"
 
 SYSTEMD_AUTO_ENABLE = "enable"
 SYSTEMD_SERVICE:${PN} = "embedded.service"
 
 do_install:append() {
   install -d ${D}${systemd_unitdir}/system
-  install -m 0644 ${WORKDIR}/embedded.service ${D}/${systemd_unitdir}/system
+
+  install -m 0644 ${WORKDIR}/embedded.service.in ${D}/${systemd_unitdir}/system/embedded.service
+  sed -i 's:@CONFIG@:${MENDER_PERSISTENT_STORAGE}/embedded:' "${D}/${systemd_unitdir}/system/embedded.service"
+
 }
 
 
