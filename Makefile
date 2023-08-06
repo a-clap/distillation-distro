@@ -50,3 +50,11 @@ bmap:
 	@sudo umount ${dev}1 || true
 	@sudo umount ${dev}2 || true
 	sudo bmaptool copy $(path)/image-bananapi-zero.wic.gz  --bmap $(path)/image-bananapi-zero.wic.bmap $(dev)
+
+dev = /dev/sdc
+mender:
+	@sudo umount ${dev}1 || true
+	@sudo umount ${dev}2 || true
+	@sudo umount ${dev}3 || true
+	@sudo umount ${dev}4 || true
+	sudo bmaptool copy $(path)/image-bananapi-zero.sdimg.bz2  --bmap $(path)/image-bananapi-zero.sdimg.bmap $(dev)
