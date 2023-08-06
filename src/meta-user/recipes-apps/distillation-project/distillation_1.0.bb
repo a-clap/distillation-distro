@@ -1,14 +1,12 @@
-DESCRIPTION = "Embedded"
+DESCRIPTION = "Distillation app"
 
 LICENSE = "CLOSED"
 
 inherit go go-mod pkgconfig
 
-SRC_URI = "git://github.com/a-clap/distillation;protocol=https;branch=development"
+require recipes-apps/distillation-project/distillation-project.inc
 
-SRCREV = "${AUTOREV}"
-
-GO_IMPORT = "./cmd/distillation"
+GO_IMPORT = "./distillation/cmd/distillation"
 GO_INSTALL = "${GO_IMPORT}"
 
 do_install:append() {
@@ -32,4 +30,4 @@ do_install:append() {
 }
 
 
-FILES:${PN} += " distillation.service"
+FILES:${PN} += "distillation.service"

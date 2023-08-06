@@ -4,12 +4,11 @@ LICENSE = "CLOSED"
 
 inherit go go-mod pkgconfig
 
-SRC_URI = "git://github.com/a-clap/embedded;protocol=https;branch=development"
+require recipes-apps/distillation-project/distillation-project.inc
+
 SRC_URI += "file://config.yaml"
 
-SRCREV = "${AUTOREV}"
-
-GO_IMPORT = "./cmd/embedded"
+GO_IMPORT = "./embedded/cmd/embedded"
 GO_INSTALL = "${GO_IMPORT}"
 
 do_install:append() {
@@ -36,4 +35,4 @@ do_install:append() {
 }
 
 
-FILES:${PN} += " embedded.service"
+FILES:${PN} += "embedded.service"
