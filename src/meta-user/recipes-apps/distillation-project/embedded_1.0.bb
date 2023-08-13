@@ -12,13 +12,6 @@ GO_INSTALL = "./embedded/cmd/embedded"
 
 MENDER_PERSISTENT_STORAGE = "/data"
 
-do_compile:prepend(){
-  # Jump to location to generate proto
-  cd ${MAIN}/embedded
-  ${GO} generate ./...
-  cd ${MAIN}
-}
-
 do_install:append() {
   install -d ${D}${MENDER_PERSISTENT_STORAGE}/embedded
   install -m 755 ${WORKDIR}/config.yaml ${D}${MENDER_PERSISTENT_STORAGE}/embedded/config.yaml

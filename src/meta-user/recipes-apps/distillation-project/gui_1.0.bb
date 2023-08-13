@@ -23,20 +23,12 @@ export GOHOSTARCH = "${BUILD_GOARCH}"
 export GOHOSTOS = "${BUILD_GOOS}"
 
 S = "${WORKDIR}/git"
-MAIN = "${S}"
 GO = "go"
 
 INSANE_SKIP:${PN} += "ldflags"
 
 do_compile() {
-    # Generate embedded protos
-    cd ${MAIN}/embedded
-    ${GO} generate ./...
-    
-    cd ${MAIN}/distillation/pkg/distillation
-    ${GO} generate ./...
-
-    cd ${MAIN}/gui
+    cd ${S}/gui
     wails build -ldflags "${GO_EXTRA_LDFLAGS}" -trimpath -skipbindings -nocolour
 }
 
