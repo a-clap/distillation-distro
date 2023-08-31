@@ -10,3 +10,6 @@
 [submodule "src/meta-mender"]
 	path = src/meta-mender
 	url = https://github.com/mendersoftware/meta-mender.git
+[submodule "src/meta-arm"]
+	path = src/meta-arm
+	url = https://git.yoctoproject.org/meta-arm
