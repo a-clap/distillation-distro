@@ -1,0 +1,35 @@
+From d05c818c410ba5a8ad10a9bf29a04f4254cb4377 Mon Sep 17 00:00:00 2001
+From: a-clap <clapinskiadam@gmail.com>
+Date: Sat, 2 Sep 2023 07:52:11 +0200
+Subject: [PATCH] Fix building for NEON
+
+---
+ Source/WebCore/Sources.txt                                      | 1 +
+ .../WebCore/platform/graphics/cpu/arm/filters/FELightingNEON.h  | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Source/WebCore/Sources.txt b/Source/WebCore/Sources.txt
+index 8ce3510f..efd56bcb 100644
+--- a/Source/WebCore/Sources.txt
++++ b/Source/WebCore/Sources.txt
+@@ -2136,6 +2136,7 @@ platform/graphics/WebMResourceClient.cpp
+ platform/graphics/WOFFFileFormat.cpp
+ platform/graphics/WidthIterator.cpp
+ platform/graphics/cpu/arm/filters/FEBlendNeonApplier.cpp
++platform/graphics/cpu/arm/filters/FELightingNEON.cpp
+ platform/graphics/displaylists/DisplayList.cpp
+ platform/graphics/displaylists/DisplayListDrawingContext.cpp
+ platform/graphics/displaylists/DisplayListItems.cpp
+diff --git a/Source/WebCore/platform/graphics/cpu/arm/filters/FELightingNEON.h b/Source/WebCore/platform/graphics/cpu/arm/filters/FELightingNEON.h
+index e4629cda..c6d17f57 100644
+--- a/Source/WebCore/platform/graphics/cpu/arm/filters/FELightingNEON.h
++++ b/Source/WebCore/platform/graphics/cpu/arm/filters/FELightingNEON.h
+@@ -98,7 +98,7 @@ inline void FELightingSoftwareApplier::applyPlatformNeon(const FELightingSoftwar
+ {
+     WebCore::FELightingFloatArgumentsForNeon alignas(16) floatArguments;
+     WebCore::FELightingPaintingDataForNeon neonData = {
+-        data.pixels->data(),
++        data.pixels->bytes(),
+         1,
+         data.width - 2,
+         data.height - 2,
