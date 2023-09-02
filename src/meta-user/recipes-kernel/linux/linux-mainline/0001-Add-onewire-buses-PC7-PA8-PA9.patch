@@ -7,10 +7,10 @@ Subject: [PATCH 1/4] Add onewire buses: PC7, PA8, PA9.
  .../dts/sun8i-h2-plus-bananapi-m2-zero.dts    | 49 +++++++++++++++++++
  1 file changed, 49 insertions(+)
 
-diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+diff --git a/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-m2-zero.dts
 index 3963fd58e2f74..569a7933038ce 100644
---- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-+++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+--- a/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-m2-zero.dts
++++ b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-m2-zero.dts
 @@ -109,6 +109,39 @@ wifi_pwrseq: wifi_pwrseq {
  		clocks = <&rtc CLK_OSC32K_FANOUT>;
  		clock-names = "ext_clock";

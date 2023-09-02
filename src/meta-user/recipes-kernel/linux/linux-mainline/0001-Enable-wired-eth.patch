@@ -4,13 +4,13 @@ Date: Tue, 20 Dec 2022 21:03:01 +0100
 Subject: [PATCH] Enable wired eth
 
 ---
- arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts | 9 ++++++++-
+ arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-m2-zero.dts | 9 ++++++++-
  1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+diff --git a/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-m2-zero.dts
 index 32430375e9fd8..e6836be1984dc 100644
---- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-+++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+--- a/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-m2-zero.dts
++++ b/arch/arm/boot/dts/allwinner/sun8i-h2-plus-bananapi-m2-zero.dts
 @@ -371,4 +371,11 @@ ds3231: rtc@68 {
  
  &i2c1 {
