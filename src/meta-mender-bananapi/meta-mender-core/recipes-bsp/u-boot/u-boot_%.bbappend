@@ -1,11 +1,19 @@
-FILESEXTRAPATHS:prepend:bananapi-zero := "${THISDIR}/files:"
-FILESEXTRAPATHS:prepend:bananapi-zero := "${THISDIR}/mender:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/mender:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 MENDER_UBOOT_AUTO_CONFIGURE = "0"
 
 BOOTENV_SIZE = "0x10000"
 
-SRC_URI:append = " file://env.cfg"
+# Remove mender patch, as it doesn't apply cleanly
+SRC_URI:remove = " file://0003-Integration-of-Mender-boot-code-into-U-Boot.patch"
 
-SRC_URI:remove = "file://0001-riscv32-Use-double-float-ABI-for-rv32.patch"
-SRC_URI:remove = "file://0001-riscv-fix-build-with-binutils-2.38.patch"
+# And add updated patch 
+SRC_URI += "file://env.cfg \
+            file://0001-Mickledore-Integration-of-Mender-boot-code-into-U-Bo.patch"
+
+
+
+
+
