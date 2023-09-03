@@ -20,12 +20,15 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 # And from now build from GIT
 S = "${WORKDIR}/linux-${PV}/git"
 
+DEPENDS += "lzop-native"
+
 SRC_URI += "file://onewire.cfg \
             file://trng.cfg \
             file://rtc.cfg \
             file://display.cfg \
             file://gov.cfg \
             file://thermal.cfg \
+            file://lzo.cfg \
             file://0001-Add-MAX31865-spidev-support.patch \
             file://0001-Add-two-spidevs-max31865.patch \
             file://0001-Add-WS2812-spidev-support.patch \
