@@ -30,6 +30,7 @@ SRC_URI += "file://onewire.cfg \
             file://thermal.cfg \
             file://lzo.cfg \
             file://media.cfg \
+            file://pwm.cfg \
             file://0001-Add-MAX31865-spidev-support.patch \
             file://0001-Add-two-spidevs-max31865.patch \
             file://0001-Add-WS2812-spidev-support.patch \
