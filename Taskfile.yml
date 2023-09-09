@@ -1,0 +1,66 @@
+# https://taskfile.dev
+
+version: '3'
+
+dotenv: ['bananapi.env']
+
+vars:
+  DOCKER_USER: "yocto"
+  DOCKER_IMAGE: "bananapi-yocto"
+  MACHINE: "bananapi-zero"
+  IMAGE_PATH: 'build/tmp/deploy/images/{{.MACHINE}}'
+  IMAGE: "image"
+  MENDER_KEY:
+    sh:
+      cat mender.key
+
+tasks:
+  default:
+    - task: run
+  run:
+    deps: [build]
+    cmds:
+      - |
+        docker run --rm \
+        -v ./downloads:/home/{{.DOCKER_USER}}/downloads \
+        -v ./sstate:/home/{{.DOCKER_USER}}/sstate \
+        -v ./src:/home/{{.DOCKER_USER}}/src \
+        -v ./build:/home/{{.DOCKER_USER}}/build \
+        -e WLAN0_SSID=${WLAN0_SSID} \
+        -e WLAN0_PSK=${WLAN0_PSK} \
+        -e GENERATED_MENDER_KEY="{{.MENDER_KEY}}" \
+        -e BB_ENV_PASSTHROUGH_ADDITIONS="WLAN0_SSID WLAN0_PSK GENERATED_MENDER_KEY" \
+        -it --user=$(id -u):$(id -g)  {{.DOCKER_IMAGE}}
+  deploy:
+    deps: [umount]
+    vars:
+      DEPLOY_IMAGE: '{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.sdimg'
+    cmds:
+      - sudo bmaptool copy {{.DEPLOY_IMAGE}}.bz2 --bmap {{.DEPLOY_IMAGE}}.bmap $DRIVE
+  clean:
+    cmds:
+      - rm -rf build/tmp
+  build:
+    internal: true
+    cmds:
+      - |
+       docker build \
+       --build-arg USER_NAME={{.DOCKER_USER}} \
+       --build-arg USER_ID=$(id -u) \
+       --build-arg GROUP_ID=$(id -g) \
+       . -t {{.DOCKER_IMAGE}}
+    sources:
+      - Dockerfile
+      - scripts/run.sh
+  umount: 
+    internal: true
+    preconditions:
+      - sh: '[ "$DRIVE" != "" ]'
+        msg: Environment variable DRIVE must be defined
+    silent: true
+    cmds:
+      - |
+        sudo umount "$DRIVE"1 || /bin/true 
+        sudo umount "$DRIVE"2 || /bin/true 
+        sudo umount "$DRIVE"3 || /bin/true 
+        sudo umount "$DRIVE"4 || /bin/true 

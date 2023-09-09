@@ -1,5 +1,8 @@
 build/*
 !build/conf
 .idea/
+.task/
 downloads
 sstate
+mender.key
+bananapi.env
