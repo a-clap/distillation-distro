@@ -1,6 +1,6 @@
 [Unit]
 Description=Xserver startup without a display manager
-DefaultDpendencies=no
+After=distillation.service osservice.service
 
 [Service]
 EnvironmentFile=/etc/default/xserver-nodm
