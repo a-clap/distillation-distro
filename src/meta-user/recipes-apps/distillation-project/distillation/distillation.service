@@ -1,6 +1,6 @@
 [Unit]
 Description=Distillation application
-DefaultDpendencies=no
+DefaultDependencies=no
 After=embedded.service
 StartLimitIntervalSec=0
 
