@@ -22,22 +22,23 @@ S = "${WORKDIR}/linux-${PV}/git"
 
 DEPENDS += "lzop-native"
 
-SRC_URI += "file://onewire.cfg \
-            file://trng.cfg \
-            file://rtc.cfg \
-            file://display.cfg \
-            file://gov.cfg \
-            file://thermal.cfg \
-            file://lzo.cfg \
-            file://media.cfg \
-            file://pwm.cfg \
-            file://0001-Add-MAX31865-spidev-support.patch \
-            file://0001-Add-two-spidevs-max31865.patch \
-            file://0001-Add-WS2812-spidev-support.patch \
-            file://0001-Add-WS2812-spidev.patch \
-            file://0001-Add-sun8i-h3-trng-hw-support.patch \
-            file://0001-Add-onewire-buses-PC7-PA8-PA9.patch \
-            file://0001-Add-i2c0-rtc-ds3231-enable-i2c1.patch \
-            file://0001-Enable-wired-eth.patch \
-            file://0001-Enforce-MMC-number-bananapi-m2-zero.patch \
+SRC_URI += " \
+            file://display.cfg                                      \
+            file://fs.cfg                                           \
+            file://gov.cfg                                          \
+            file://gpu.cfg                                          \
+            file://lzo.cfg                                          \
+            file://onewire.cfg                                      \
+            file://rtc.cfg                                          \
+            file://thermal.cfg                                      \
+            file://trng.cfg                                         \
+            file://0001-Add-i2c0-rtc-ds3231-enable-i2c1.patch       \
+            file://0001-Add-MAX31865-spidev-support.patch           \
+            file://0001-Add-onewire-buses-PC7-PA8-PA9.patch         \
+            file://0001-Add-sun8i-h3-trng-hw-support.patch          \
+            file://0001-Add-two-spidevs-max31865.patch              \
+            file://0001-Add-WS2812-spidev.patch                     \
+            file://0001-Add-WS2812-spidev-support.patch             \
+            file://0001-Enable-wired-eth.patch                      \
+            file://0001-Enforce-MMC-number-bananapi-m2-zero.patch   \
             "
