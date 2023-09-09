@@ -1,0 +1,14 @@
+[Unit]
+Description=osservice application
+DefaultDependencies=no
+StartLimitIntervalSec=0
+After=network.target mender-systemd-growfs-data.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/usr/bin/osservice -port 50003 -config @CONFIG@ -mender @MENDER@ -token @TOKEN@ -pem @PEM@
+
+[Install]
+WantedBy=basic.target

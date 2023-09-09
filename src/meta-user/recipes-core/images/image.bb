@@ -22,5 +22,5 @@ IMAGE_INSTALL += "  \
 
 IMAGE_INSTALL += "wpa-supplicant"
 IMAGE_INSTALL += "xinput-calibrator pointercal-xinput"
-IMAGE_INSTALL += "distillation embedded gui gui-governor"
+IMAGE_INSTALL += "distillation embedded gui gui-governor osservice"
 IMAGE_INSTALL += "iptables avahi-daemon"
