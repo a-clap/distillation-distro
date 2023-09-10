@@ -23,6 +23,7 @@ S = "${WORKDIR}/linux-${PV}/git"
 DEPENDS += "lzop-native"
 
 SRC_URI += " \
+            file://ptys.cfg                                         \
             file://display.cfg                                      \
             file://fs.cfg                                           \
             file://gov.cfg                                          \
