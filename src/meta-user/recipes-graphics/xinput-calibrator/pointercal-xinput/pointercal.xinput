@@ -1,1 +1,1 @@
-xinput set-float-prop "wch.cn USB2IIC_CTP_CONTROL" "libinput Calibration Matrix" 1.008569 -0.000727 -0.015985 -0.015730 0.998036 0.006541 0.000000 0.000000 1.000000;
+xinput set-float-prop "wch.cn USB2IIC_CTP_CONTROL Touchscreen" "libinput Calibration Matrix" 1.000000 0.000000 0.000000 0.000000 1.000000 0.00000 0.000000 0.000000 1.000000;
