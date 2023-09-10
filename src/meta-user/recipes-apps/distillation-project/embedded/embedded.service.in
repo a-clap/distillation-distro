@@ -2,6 +2,7 @@
 Description=Embedded application
 DefaultDependencies=no
 StartLimitIntervalSec=0
+After=data.mount
 
 [Service]
 Type=simple
