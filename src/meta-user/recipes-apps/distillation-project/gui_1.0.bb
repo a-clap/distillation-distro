@@ -7,7 +7,6 @@ inherit features_check pkgconfig goarch
 require recipes-apps/distillation-project/distillation-project.inc
 
 REQUIRED_DISTRO_FEATURES = "opengl"
-REQUIRES_IMAGE_FEATURES = "x11-base"
 
 SRC_URI += "file://session"
 SRC_URI += "file://99-calibration.conf"
@@ -45,3 +44,5 @@ do_install() {
 
 FILES:${PN} += "${sysconfdir}/mini_x/session"
 FILES:${PN} += "${sysconfdir}/X11/xorg.conf.d/*"
+
+RDEPENDS:${PN} += "packagegroup-core-x11-base"
