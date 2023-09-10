@@ -1,0 +1,28 @@
+From 7a81c43b8fb06ded69a7933cdb3a51034f419a5f Mon Sep 17 00:00:00 2001
+From: a-clap <clapinskiadam@gmail.com>
+Date: Sun, 10 Sep 2023 09:46:12 +0200
+Subject: [PATCH] Add mender_boot command
+
+---
+ include/configs/sunxi-common.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/include/configs/sunxi-common.h b/include/configs/sunxi-common.h
+index e89ad42ce8..f7f9fa99be 100644
+--- a/include/configs/sunxi-common.h
++++ b/include/configs/sunxi-common.h
+@@ -337,6 +337,14 @@
+ 	"uuid_gpt_esp=" UUID_GPT_ESP "\0" \
+ 	"uuid_gpt_system=" UUID_GPT_SYSTEM "\0" \
+ 	"partitions=" PARTS_DEFAULT "\0" \
++	"mender_boot=" \
++		"run mender_setup;" \
++		"setenv bootargs console=${console} console=tty1 root=${mender_kernel_root} rootwait panic=10 ${extra};" \
++		"mmc dev ${mender_uboot_dev};" \
++		"load ${mender_uboot_root} ${fdt_addr_r} /boot/${fdtfile};" \
++		"load ${mender_uboot_root} ${kernel_addr_r} /boot/${mender_kernel_name};" \
++		"${mender_boot_kernel_type} ${kernel_addr_r} - ${fdt_addr_r};" \
++		"run mender_try_to_recover;\0" \
+ 	BOOTCMD_SUNXI_COMPAT \
+ 	BOOTENV
+ 
