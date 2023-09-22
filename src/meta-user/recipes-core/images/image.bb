@@ -2,7 +2,6 @@ SUMMARY = "Image for BananaPI BPI-M2 Zero"
 
 require recipes-core/images/core-image-minimal.bb
 
-IMAGE_FEATURES += "read-only-rootfs"
 IMAGE_INSTALL += "volatile-binds"
 
 IMAGE_INSTALL += "libgpiod"
