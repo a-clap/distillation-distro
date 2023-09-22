@@ -37,9 +37,26 @@ tasks:
       DEPLOY_IMAGE: '{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.sdimg'
     cmds:
       - sudo bmaptool copy {{.DEPLOY_IMAGE}}.bz2 --bmap {{.DEPLOY_IMAGE}}.bmap $DRIVE
+  fsck:
+    deps: [umount]
+    cmds:
+        - sudo fsck "$DRIVE"2 
+        - sudo fsck "$DRIVE"3 
+        - sudo fsck "$DRIVE"4 
   clean:
     cmds:
       - rm -rf build/tmp
+  artifact:
+    vars:
+      VERSION: 0.1.2
+    cmds:
+      - |
+        mender-artifact write rootfs-image \
+        -t bananapi-zero \
+        -n {{.VERSION}} \
+        --software-version {{.VERSION}} \
+        -f {{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.ext4 \
+        -o {{.VERSION}}.mender
   build:
     internal: true
     cmds:
