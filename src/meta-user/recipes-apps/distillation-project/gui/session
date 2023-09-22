@@ -14,4 +14,4 @@ matchbox-terminal&
 # Run the wm first
 matchbox-window-manager -use_titlebar no -use_cursor no &
 
-su -l -c "/usr/bin/gui" root
+su -l -c "/usr/bin/gui -addr 127.0.0.1 -dist 50002 -os 50003" root
