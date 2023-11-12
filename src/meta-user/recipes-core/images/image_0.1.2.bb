@@ -2,6 +2,8 @@ SUMMARY = "Image for BananaPI BPI-M2 Zero"
 
 require recipes-core/images/core-image-minimal.bb
 
+MENDER_ARTIFACT_NAME = "${PV}"
+
 IMAGE_INSTALL += "volatile-binds"
 
 IMAGE_INSTALL += "libgpiod"
