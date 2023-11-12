@@ -11,7 +11,8 @@ SRC_URI:remove:bananapi-zero = "file://0003-Integration-of-Mender-boot-code-into
 
 # And add updated patch 
 SRC_URI:append:bananapi-zero = "    file://env.cfg \
-                                    file://0001-Mickledore-Integration-of-Mender-boot-code-into-U-Bo.patch"
+                                    file://0001-Mickledore-Integration-of-Mender-boot-code-into-U-Bo.patch \ 
+                                    file://0001-Add-mender_boot-command.patch"
 
 
 

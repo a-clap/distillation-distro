@@ -1,27 +1,27 @@
-From e5c1414adb0fc0536235e98d3e27efba0466ac18 Mon Sep 17 00:00:00 2001
+From 1169c1791aa6c5778807bb149603cf3ec216efa9 Mon Sep 17 00:00:00 2001
 From: a-clap <85076699+a-clap@users.noreply.github.com>
 Date: Sat, 2 Sep 2023 06:26:57 +0200
 Subject: [PATCH] Mickledore: Integration of Mender boot code into U-Boot.
-
+Upstream-Status: Inappropriate [own patch]
 ---
  include/env_default.h     | 3 +++
  scripts/Makefile.autoconf | 3 ++-
  2 files changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/include/env_default.h b/include/env_default.h
-index 7c9c00a969..cf04f1253b 100644
+index b16c22d5a2..ee303ab6c3 100644
 --- a/include/env_default.h
 +++ b/include/env_default.h
-@@ -14,6 +14,8 @@
+@@ -12,6 +12,8 @@
+ 
  #include <generated/environment.h>
- #endif
  
 +#include <env_mender.h>
 +
  #ifdef DEFAULT_ENV_INSTANCE_EMBEDDED
  env_t embedded_environment __UBOOT_ENV_SECTION__(environment) = {
  	ENV_CRC,	/* CRC Sum */
-@@ -28,6 +30,7 @@ char default_environment[] = {
+@@ -26,6 +28,7 @@ char default_environment[] = {
  #else
  const char default_environment[] = {
  #endif
@@ -30,10 +30,10 @@ index 7c9c00a969..cf04f1253b 100644
  #ifdef	CONFIG_ENV_CALLBACK_LIST_DEFAULT
  	ENV_CALLBACK_VAR "=" CONFIG_ENV_CALLBACK_LIST_DEFAULT "\0"
 diff --git a/scripts/Makefile.autoconf b/scripts/Makefile.autoconf
-index 5a4a148955..9ee6737527 100644
+index 0ade91642a..c653f1afaa 100644
 --- a/scripts/Makefile.autoconf
 +++ b/scripts/Makefile.autoconf
-@@ -117,7 +117,8 @@ define filechk_config_h
+@@ -116,7 +116,8 @@ define filechk_config_h
  	echo \#include \<configs/$(CONFIG_SYS_CONFIG_NAME).h\>;		\
  	echo \#include \<asm/config.h\>;				\
  	echo \#include \<linux/kconfig.h\>;				\
