@@ -1,7 +1,9 @@
-From dbac28309e6c5e9f7d47ba9826ff1e1fe3e08d3d Mon Sep 17 00:00:00 2001
+From 982baf17ccfdb91317de27dfb2578db16d915a47 Mon Sep 17 00:00:00 2001
 From: a-clap <85076699+a-clap@users.noreply.github.com>
 Date: Sat, 2 Sep 2023 11:26:45 +0200
 Subject: [PATCH] Dirty hack: generate webkit2gtk-4.0.pc instead of ..-4.1.pc
+
+Upstream-Status: Inappriopriate
 
 ---
  Source/WebKit/PlatformGTK.cmake | 2 +-

@@ -1,7 +1,9 @@
-From d05c818c410ba5a8ad10a9bf29a04f4254cb4377 Mon Sep 17 00:00:00 2001
-From: a-clap <clapinskiadam@gmail.com>
-Date: Sat, 2 Sep 2023 07:52:11 +0200
-Subject: [PATCH] Fix building for NEON
+From 520de677d0337907fb9577846e8e18f82fdc7ec2 Mon Sep 17 00:00:00 2001
+From: yocto <yocto@devtool.com>
+Date: Sun, 12 Nov 2023 16:51:55 +0100
+Subject: [PATCH] Fix: building for NEON
+
+Upstream-Status: Inappropriate
 
 ---
  Source/WebCore/Sources.txt                                      | 1 +

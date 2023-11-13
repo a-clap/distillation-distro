@@ -1,7 +1,9 @@
-From 963d59ac0f686c4246e2723c73a8a11d6f4774f0 Mon Sep 17 00:00:00 2001
+From 121a00660bc53a4078abe1b67ab9dccbe4cb23e6 Mon Sep 17 00:00:00 2001
 From: a-clap <clapinskiadam@gmail.com>
 Date: Tue, 4 Apr 2023 19:18:14 +0200
 Subject: [PATCH] Patch error: standard attributes in middle of decl-specifiers
+
+Upstream-Status: Inappropriate
 
 ---
  .../platform/graphics/cpu/arm/filters/FELightingNEON.cpp        | 2 +-
@@ -20,6 +22,3 @@ index 42a97ffc..dced3d55 100644
      // Alpha coefficients.
      -2, 1, 0, -1, 2, 1, 0, -1,
      0, -1, -2, -1, 0, 1, 2, 1,
--- 
-2.40.0
-

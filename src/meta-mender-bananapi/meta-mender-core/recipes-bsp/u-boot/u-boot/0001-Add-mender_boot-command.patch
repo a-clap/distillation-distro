@@ -1,17 +1,17 @@
-From 7a81c43b8fb06ded69a7933cdb3a51034f419a5f Mon Sep 17 00:00:00 2001
+From 301ebbac2af98fda5c72c7b3e5bf881c36065e15 Mon Sep 17 00:00:00 2001
 From: a-clap <clapinskiadam@gmail.com>
 Date: Sun, 10 Sep 2023 09:46:12 +0200
 Subject: [PATCH] Add mender_boot command
-
+Upstream-Status: Inappropriate [own patch]
 ---
  include/configs/sunxi-common.h | 8 ++++++++
  1 file changed, 8 insertions(+)
 
 diff --git a/include/configs/sunxi-common.h b/include/configs/sunxi-common.h
-index e89ad42ce8..f7f9fa99be 100644
+index d2d70f0fc2..6e44bc1c5e 100644
 --- a/include/configs/sunxi-common.h
 +++ b/include/configs/sunxi-common.h
-@@ -337,6 +337,14 @@
+@@ -328,6 +328,14 @@
  	"uuid_gpt_esp=" UUID_GPT_ESP "\0" \
  	"uuid_gpt_system=" UUID_GPT_SYSTEM "\0" \
  	"partitions=" PARTS_DEFAULT "\0" \
