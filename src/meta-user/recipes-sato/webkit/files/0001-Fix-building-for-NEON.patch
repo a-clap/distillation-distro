@@ -1,20 +1,22 @@
-From d602c2d3794d7c041674f2818c998975c4bcfd9d Mon Sep 17 00:00:00 2001
+From 520de677d0337907fb9577846e8e18f82fdc7ec2 Mon Sep 17 00:00:00 2001
 From: yocto <yocto@devtool.com>
 Date: Sun, 12 Nov 2023 16:51:55 +0100
 Subject: [PATCH] Fix: building for NEON
-Upstream-Status: Denied
+
+Upstream-Status: Inappropriate
+
 ---
  Source/WebCore/Sources.txt                                      | 1 +
  .../WebCore/platform/graphics/cpu/arm/filters/FELightingNEON.h  | 2 +-
  2 files changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/Source/WebCore/Sources.txt b/Source/WebCore/Sources.txt
-index b783f88d..0ba5fb74 100644
+index 8ce3510f..efd56bcb 100644
 --- a/Source/WebCore/Sources.txt
 +++ b/Source/WebCore/Sources.txt
-@@ -2234,6 +2234,7 @@ platform/graphics/controls/MeterPart.cpp
- platform/graphics/controls/ProgressBarPart.cpp
- platform/graphics/controls/SliderTrackPart.cpp
+@@ -2136,6 +2136,7 @@ platform/graphics/WebMResourceClient.cpp
+ platform/graphics/WOFFFileFormat.cpp
+ platform/graphics/WidthIterator.cpp
  platform/graphics/cpu/arm/filters/FEBlendNeonApplier.cpp
 +platform/graphics/cpu/arm/filters/FELightingNEON.cpp
  platform/graphics/displaylists/DisplayList.cpp
