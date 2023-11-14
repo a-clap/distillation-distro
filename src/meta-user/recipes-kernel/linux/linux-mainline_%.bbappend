@@ -6,12 +6,8 @@ SRC_URI:remove = "file://0001-dts-orange-pi-zero-Add-wifi-support.patch"
 SRC_URI:remove = "file://0002-dts-nanopi-neo-air-add-camera.patch"
 SRC_URI:remove = "file://0003-dts-allwinner-bananapi-m2-zreo-Enforce-consistent-MM.patch"
 
-
 # Update kernel git path
 SRC_URI += "git://github.com/torvalds/linux.git;protocol=https;branch=master"
-
-# And my own patches
-FILESEXTRAPATHS:prepend := "${THISDIR}/linux-mainline:"
 
 PV = "6.5"
 SRCREV = "2dde18cd1d8fac735875f2e4987f11817cc0bc2c"
@@ -20,9 +16,13 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 # And from now build from GIT
 S = "${WORKDIR}/linux-${PV}/git"
 
-DEPENDS += "lzop-native"
 
-SRC_URI += " \
+# bananapi-zero
+DEPENDS:append:bananapi-zero = " lzop-native"
+
+FILESEXTRAPATHS:prepend:bananapi-zero := "${THISDIR}/bananapi-zero:"
+
+SRC_URI:append:bananapi-zero = " \
             file://ptys.cfg                                         \
             file://display.cfg                                      \
             file://fs.cfg                                           \
@@ -43,3 +43,4 @@ SRC_URI += " \
             file://0001-Enable-wired-eth.patch                      \
             file://0001-Enforce-MMC-number-bananapi-m2-zero.patch   \
             "
+
