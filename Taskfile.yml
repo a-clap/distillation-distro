@@ -37,6 +37,15 @@ tasks:
       DEPLOY_IMAGE: '{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.sdimg'
     cmds:
       - sudo bmaptool copy {{.DEPLOY_IMAGE}}.bz2 --bmap {{.DEPLOY_IMAGE}}.bmap $DRIVE
+  deploy_mq:
+    deps: [umount]
+    vars:
+      IMAGE: "core-image-minimal"
+      MACHINE: 'mq-quad'
+      IMAGE_PATH: 'build/tmp/deploy/images/{{.MACHINE}}'
+      DEPLOY_IMAGE: '{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.wic'
+    cmds:
+      - sudo bmaptool copy {{.DEPLOY_IMAGE}}.gz --bmap {{.DEPLOY_IMAGE}}.bmap $DRIVE
   fsck:
     deps: [umount]
     cmds:
