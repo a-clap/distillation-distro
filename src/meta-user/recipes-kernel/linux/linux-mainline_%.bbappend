@@ -9,8 +9,8 @@ SRC_URI:remove = "file://0003-dts-allwinner-bananapi-m2-zreo-Enforce-consistent-
 # Update kernel git path
 SRC_URI += "git://github.com/torvalds/linux.git;protocol=https;branch=master"
 
-PV = "6.5"
-SRCREV = "2dde18cd1d8fac735875f2e4987f11817cc0bc2c"
+PV = "6.6"
+SRCREV = "ffc253263a1375a65fa6c9f62a893e9767fbebfa"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 # And from now build from GIT
@@ -41,6 +41,5 @@ SRC_URI:append:bananapi-zero = " \
             file://0001-Add-WS2812-spidev.patch                     \
             file://0001-Add-WS2812-spidev-support.patch             \
             file://0001-Enable-wired-eth.patch                      \
-            file://0001-Enforce-MMC-number-bananapi-m2-zero.patch   \
             "
 
