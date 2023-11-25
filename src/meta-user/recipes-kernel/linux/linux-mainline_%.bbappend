@@ -43,3 +43,8 @@ SRC_URI:append:bananapi-zero = " \
             file://0001-Enable-wired-eth.patch                      \
             "
 
+# mq-quad
+
+FILESEXTRAPATHS:prepend:mq-quad := "${THISDIR}/mq-quad:"
+
+SRC_URI:append:mq-quad = " file://0001-Basic-mangpopi-mq-quad-support.patch"
