@@ -37,11 +37,11 @@ tasks:
       DEPLOY_IMAGE: '{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.sdimg'
     cmds:
       - sudo bmaptool copy {{.DEPLOY_IMAGE}}.bz2 --bmap {{.DEPLOY_IMAGE}}.bmap $DRIVE
-  deploy_mq:
+  deploy_orange:
     deps: [umount]
     vars:
       IMAGE: "core-image-minimal"
-      MACHINE: 'mq-quad'
+      MACHINE: 'orangepi-zero-2w'
       IMAGE_PATH: 'build/tmp/deploy/images/{{.MACHINE}}'
       DEPLOY_IMAGE: '{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.wic'
     cmds:
