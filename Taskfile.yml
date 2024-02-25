@@ -41,9 +41,9 @@ tasks:
       IMAGE: "core-image-minimal"
       MACHINE: "orangepi-zero2w"
       IMAGE_PATH: "build/tmp/deploy/images/{{.MACHINE}}"
-      DEPLOY_IMAGE: "{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.wic"
+      DEPLOY_IMAGE: "{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}"
     cmds:
-      - sudo bmaptool copy {{.DEPLOY_IMAGE}}.gz --bmap {{.DEPLOY_IMAGE}}.bmap $DRIVE
+      - sudo bmaptool copy {{.DEPLOY_IMAGE}}.rootfs.wic.gz --bmap {{.DEPLOY_IMAGE}}.rootfs.wic.bmap $DRIVE
   fsck:
     deps: [umount]
     cmds:
