@@ -1,57 +1,60 @@
 # https://taskfile.dev
 
-version: '3'
+version: "3"
 
-dotenv: ['bananapi.env']
+dotenv: ["bananapi.env"]
 
 vars:
   DOCKER_USER: "yocto"
-  DOCKER_IMAGE: "bananapi-yocto"
+  DOCKER_IMAGE: "crops/poky"
   MACHINE: "bananapi-zero"
-  IMAGE_PATH: 'build/tmp/deploy/images/{{.MACHINE}}'
+  IMAGE_PATH: "build/tmp/deploy/images/{{.MACHINE}}"
   IMAGE: "image"
   MENDER_KEY:
-    sh:
-      cat mender.key
+    sh: cat mender.key
+  WORKSPACE:
+    sh: pwd
 
 tasks:
   default:
     - task: run
+  tellme:
+    cmds:
+      - echo {{ .WORKSPACE }}
   run:
     deps: [build]
     cmds:
       - |
         docker run --rm \
-        -v ./downloads:/home/{{.DOCKER_USER}}/downloads \
-        -v ./sstate:/home/{{.DOCKER_USER}}/sstate \
-        -v ./src:/home/{{.DOCKER_USER}}/src \
-        -v ./build:/home/{{.DOCKER_USER}}/build \
+        -v {{.WORKSPACE }}:{{.WORKSPACE}} \
+        -v {{.WORKSPACE }}/downloads:{{.WORKSPACE }}/downloads \
+        -v {{.WORKSPACE }}/sstate:{{.WORKSPACE }}/sstate \
         -e WLAN0_SSID=${WLAN0_SSID} \
         -e WLAN0_PSK=${WLAN0_PSK} \
         -e GENERATED_MENDER_KEY="{{.MENDER_KEY}}" \
         -e BB_ENV_PASSTHROUGH_ADDITIONS="WLAN0_SSID WLAN0_PSK GENERATED_MENDER_KEY" \
-        -it --user=$(id -u):$(id -g)  {{.DOCKER_IMAGE}}
+        -it {{.DOCKER_IMAGE}} /bin/bash -c "cd {{.WORKSPACE}} && source src/poky/oe-init-build-env  && /bin/bash"
   deploy:
     deps: [umount]
     vars:
-      DEPLOY_IMAGE: '{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.sdimg'
+      DEPLOY_IMAGE: "{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.sdimg"
     cmds:
       - sudo bmaptool copy {{.DEPLOY_IMAGE}}.bz2 --bmap {{.DEPLOY_IMAGE}}.bmap $DRIVE
   deploy_orange:
     deps: [umount]
     vars:
       IMAGE: "core-image-minimal"
-      MACHINE: 'orangepi-zero-2w'
-      IMAGE_PATH: 'build/tmp/deploy/images/{{.MACHINE}}'
-      DEPLOY_IMAGE: '{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.wic'
+      MACHINE: "orangepi-zero-2w"
+      IMAGE_PATH: "build/tmp/deploy/images/{{.MACHINE}}"
+      DEPLOY_IMAGE: "{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.wic"
     cmds:
       - sudo bmaptool copy {{.DEPLOY_IMAGE}}.gz --bmap {{.DEPLOY_IMAGE}}.bmap $DRIVE
   fsck:
     deps: [umount]
     cmds:
-        - sudo fsck "$DRIVE"2 
-        - sudo fsck "$DRIVE"3 
-        - sudo fsck "$DRIVE"4 
+      - sudo fsck "$DRIVE"2
+      - sudo fsck "$DRIVE"3
+      - sudo fsck "$DRIVE"4
   clean:
     cmds:
       - rm -rf build/tmp
@@ -70,15 +73,15 @@ tasks:
     internal: true
     cmds:
       - |
-       docker build \
-       --build-arg USER_NAME={{.DOCKER_USER}} \
-       --build-arg USER_ID=$(id -u) \
-       --build-arg GROUP_ID=$(id -g) \
-       . -t {{.DOCKER_IMAGE}}
+        docker build \
+        --build-arg USER_NAME={{.DOCKER_USER}} \
+        --build-arg USER_ID=$(id -u) \
+        --build-arg GROUP_ID=$(id -g) \
+        . -t {{.DOCKER_IMAGE}}
     sources:
       - Dockerfile
       - scripts/run.sh
-  umount: 
+  umount:
     internal: true
     preconditions:
       - sh: '[ "$DRIVE" != "" ]'
@@ -89,4 +92,4 @@ tasks:
         sudo umount "$DRIVE"1 || /bin/true 
         sudo umount "$DRIVE"2 || /bin/true 
         sudo umount "$DRIVE"3 || /bin/true 
-        sudo umount "$DRIVE"4 || /bin/true 
+        sudo umount "$DRIVE"4 || /bin/true
