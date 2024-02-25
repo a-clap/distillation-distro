@@ -5,7 +5,6 @@ version: "3"
 dotenv: ["bananapi.env"]
 
 vars:
-  DOCKER_USER: "yocto"
   DOCKER_IMAGE: "crops/poky"
   MACHINE: "bananapi-zero"
   IMAGE_PATH: "build/tmp/deploy/images/{{.MACHINE}}"
@@ -18,11 +17,7 @@ vars:
 tasks:
   default:
     - task: run
-  tellme:
-    cmds:
-      - echo {{ .WORKSPACE }}
   run:
-    deps: [build]
     cmds:
       - |
         docker run --rm \
@@ -69,18 +64,6 @@ tasks:
         --software-version {{.VERSION}} \
         -f {{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.ext4 \
         -o {{.VERSION}}.mender
-  build:
-    internal: true
-    cmds:
-      - |
-        docker build \
-        --build-arg USER_NAME={{.DOCKER_USER}} \
-        --build-arg USER_ID=$(id -u) \
-        --build-arg GROUP_ID=$(id -g) \
-        . -t {{.DOCKER_IMAGE}}
-    sources:
-      - Dockerfile
-      - scripts/run.sh
   umount:
     internal: true
     preconditions:
