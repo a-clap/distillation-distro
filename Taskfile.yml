@@ -39,7 +39,7 @@ tasks:
     deps: [umount]
     vars:
       IMAGE: "core-image-minimal"
-      MACHINE: "orangepi-zero-2w"
+      MACHINE: "orangepi-zero2w"
       IMAGE_PATH: "build/tmp/deploy/images/{{.MACHINE}}"
       DEPLOY_IMAGE: "{{.IMAGE_PATH}}/{{.IMAGE}}-{{.MACHINE}}.wic"
     cmds:
