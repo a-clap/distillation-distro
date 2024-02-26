@@ -11,7 +11,7 @@ SRC_URI += "git://github.com/torvalds/linux.git;protocol=https;branch=master"
 
 PV = "6.8"
 KERNEL_VERSION_SANITY_SKIP = "1"
-SRCREV = "b401b621758e46812da61fa58a67c3fd8d91de0d"
+SRCREV = "d206a76d7d2726f3b096037f2079ce0bd3ba329b"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 # And from now build from GIT
@@ -53,5 +53,8 @@ SRC_URI:append:mq-quad = " file://0001-Basic-mangpopi-mq-quad-support.patch"
 # orangepi-zero2w
 FILESEXTRAPATHS:prepend:orangepi-zero2w := "${THISDIR}/orangepi-zero2w:"
 
-SRC_URI:append:orangepi-zero2w = " file://axp.cfg"
+SRC_URI:append:orangepi-zero2w = "  \
+     file://axp.cfg                 \
+     file://w1.cfg                  \
+     file://connector.cfg"
 
